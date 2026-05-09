@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="positioning">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+<title>Tata Neu · Young Monk · Moto, Positioning · Simran Raj Bhyana</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Syne:wght@400;700;800&display=swap" rel="stylesheet"/>
+<style>
+:root{--gold:#c8a96e;--gold2:#e8c87a;--bg:#070c1a;--bg2:#0a1022;--surf:#0e1830;
+  --text:#dce8ff;--mute:rgba(220,232,255,.52);
+  --border:rgba(130,170,255,.12);--border2:rgba(200,169,110,.22);
+  --ease:cubic-bezier(.16,1,.3,1);--font-sans:'Inter',sans-serif;--font-disp:'Syne',sans-serif}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font-sans);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--gold);color:#000}a{color:inherit;text-decoration:none}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:20px 52px;background:rgba(7,12,26,.72);backdrop-filter:blur(20px) saturate(140%);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:var(--font-disp);font-size:17px;font-weight:800;letter-spacing:-.02em}.nav-logo span{color:var(--gold)}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{font-size:11.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(220,232,255,.62);transition:color .25s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--gold);transition:width .3s var(--ease)}
+.nav-links a:hover,.nav-links a.active{color:var(--text)}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.nav-cta{font-size:12px;padding:9px 22px;border:1px solid var(--border2);border-radius:100px;color:var(--gold);background:rgba(200,169,110,.04);backdrop-filter:blur(12px)}
+.nav-cta:hover{background:var(--gold);color:#000}
+.back{position:fixed;top:90px;left:52px;z-index:50;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);transition:color .25s}
+.back:hover{color:var(--gold)}
+.hero{min-height:70vh;display:flex;flex-direction:column;justify-content:flex-end;padding:180px 52px 60px;max-width:1280px;margin:0 auto;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 60% 55% at 82% 22%,rgba(30,90,200,.38),transparent 70%)}
+.meta-row{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:28px;font-size:10.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--mute);position:relative}
+.meta-row .dot{color:var(--gold)}.meta-row b{color:var(--gold);font-weight:500}
+h1{font-family:var(--font-disp);font-size:clamp(44px,6.5vw,84px);font-weight:800;line-height:.95;letter-spacing:-.035em;margin-bottom:24px;position:relative}
+h1 em{font-style:italic;font-weight:400;color:var(--gold)}
+.hero-sub{font-size:18px;color:var(--mute);max-width:740px;line-height:1.65;position:relative}
+
+section{padding:60px 52px 100px;max-width:1280px;margin:0 auto}
+
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:34px;padding:8px;border:1px solid var(--border);border-radius:16px;background:linear-gradient(135deg,rgba(22,38,72,.32),rgba(10,16,34,.18));backdrop-filter:blur(16px)}
+.tab{display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:10px;cursor:pointer;border:1px solid transparent;background:transparent;color:inherit;font-family:var(--font-sans);text-align:left;transition:all .35s var(--ease);position:relative}
+.tab:hover{background:rgba(200,169,110,.04)}
+.tab[aria-selected="true"]{background:linear-gradient(135deg,rgba(200,169,110,.1),rgba(200,169,110,.02));border-color:var(--border2);box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}
+.tab-ico{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;flex-shrink:0;border-radius:9px;border:1px solid var(--border2);background:rgba(200,169,110,.06);color:var(--gold);transition:all .35s var(--ease)}
+.tab[aria-selected="true"] .tab-ico{background:var(--gold);color:#000;border-color:var(--gold)}
+.tab-ico svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7}
+.tab-meta{display:flex;flex-direction:column;gap:2px;min-width:0}
+.tab-num{font-family:var(--font-disp);font-size:10px;letter-spacing:.28em;color:var(--gold);text-transform:uppercase}
+.tab-name{font-family:var(--font-disp);font-size:15.5px;font-weight:700;letter-spacing:-.01em;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+.brief-card{background:linear-gradient(135deg,rgba(22,38,72,.45),rgba(10,16,34,.28));backdrop-filter:blur(20px) saturate(140%);border:1px solid var(--border);border-radius:16px;padding:48px 52px;box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 14px 40px rgba(0,0,30,.35);position:relative;overflow:hidden}
+.brief-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:linear-gradient(180deg,var(--gold),transparent)}
+.brief-card{display:none;animation:brief-in .45s var(--ease)}
+.brief-card.on{display:block}
+@keyframes brief-in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.brief-top{display:flex;align-items:flex-start;gap:22px;margin-bottom:22px}
+.brief-top .big-ico{flex-shrink:0;width:62px;height:62px;border-radius:14px;border:1px solid var(--border2);background:linear-gradient(135deg,rgba(200,169,110,.12),rgba(200,169,110,.02));color:var(--gold);display:inline-flex;align-items:center;justify-content:center;box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
+.brief-top .big-ico svg{width:32px;height:32px;fill:none;stroke:currentColor;stroke-width:1.6}
+.brief-top-meta{flex:1;min-width:0}
+.brief-num{font-family:var(--font-disp);font-size:11.5px;letter-spacing:.28em;color:var(--gold);margin-bottom:10px;text-transform:uppercase;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.brief-num .tag{font-family:var(--font-sans);font-size:10px;padding:4px 10px;border:1px solid var(--border);border-radius:100px;color:rgba(220,232,255,.7);letter-spacing:.14em}
+.brief-top h3{font-family:var(--font-disp);font-size:clamp(28px,3.4vw,42px);font-weight:700;letter-spacing:-.02em;line-height:1.1}
+.brief-top h3 em{font-style:italic;font-weight:400;color:var(--gold)}
+.brief-line{font-family:var(--font-disp);font-style:italic;font-size:17px;color:var(--mute);margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid var(--border);line-height:1.45}
+.brief-body{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.brief-col h4{font-family:var(--font-disp);font-size:12.5px;letter-spacing:.22em;color:var(--gold);text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:10px}
+.brief-col h4 svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.8;opacity:.85}
+.brief-col p{font-size:14.5px;color:rgba(220,232,255,.78);line-height:1.7;margin-bottom:14px}
+.brief-col p b{color:var(--text);font-weight:500}
+.proof{margin-top:26px;padding-top:22px;border-top:1px solid var(--border);display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.proof-cell{display:flex;flex-direction:column;gap:4px;padding-left:14px;border-left:1px solid var(--border2)}
+.proof-cell b{color:var(--gold);font-family:var(--font-disp);font-size:20px;font-weight:700;letter-spacing:-.01em}
+.proof-cell span{font-size:11px;color:var(--mute);letter-spacing:.12em;text-transform:uppercase}
+
+.pagenav{position:static!important;top:auto!important;z-index:auto!important;background:transparent!important;backdrop-filter:none!important;border-bottom:none!important;padding:60px 52px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border);max-width:1280px;margin:60px auto 0;flex-wrap:wrap;gap:20px}
+.pagenav a{font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--mute);transition:color .25s}
+.pagenav a:hover{color:var(--gold)}
+.pagenav a.prim{color:var(--gold);border:1px solid var(--border2);padding:14px 28px;border-radius:100px;background:rgba(200,169,110,.04)}
+.pagenav a.prim:hover{background:var(--gold);color:#000}
+footer{padding:40px 52px;border-top:1px solid var(--border);text-align:center;color:var(--mute);font-size:12px;letter-spacing:.08em}footer a{color:var(--gold)}
+
+@media(max-width:900px){
+  nav{padding:16px 22px}.nav-links{display:none}.back{left:22px;top:72px}
+  .hero{padding:140px 24px 50px;min-height:auto}section{padding:40px 24px 70px}
+  .brief-card{padding:30px 24px}
+  .brief-body{grid-template-columns:1fr;gap:26px}
+  .tabs{grid-template-columns:1fr;gap:6px}
+  .tab{padding:14px 14px}
+  .proof{grid-template-columns:1fr;gap:12px}
+}
+@media(max-width:540px){
+  nav{padding:14px 18px}
+  .back{left:18px;top:64px;font-size:12px}
+  .hero{padding:120px 18px 44px}
+  section{padding:52px 18px}
+  h1{font-size:clamp(36px,10vw,58px)!important}
+  h2{font-size:clamp(24px,6.4vw,34px)!important}
+}
+
+</style>
+</head>
+
+
+<nav>
+  <a class="nav-logo" href="index.html">Simran<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="projects.html" class="active">Projects</a></li>
+    <li><a href="cv.html">CV</a></li>
+    <li><a href="author-ai.html">Author.AI</a></li>
+    <li><a href="index.html#contact">Connect</a></li>
+  </ul>
+  <a href="https://chatgpt.com/g/g-69517b4ef32481918f687dfdaffbfc55-simran-raj-bhyana-for-hire" target="_blank" class="nav-cta">Simran.GPT ↗</a>
+</nav>
+
+<a href="projects.html#ch-01" class="back">← Positioning chapter</a>
+
+<header class="hero">
+  <div class="meta-row">
+    <span>Case 03</span><span class="dot">·</span>
+    <span>Positioning</span><span class="dot">·</span>
+    <span>3 briefs · 1 dossier</span>
+  </div>
+  <h1>Three morerewrites.</h1>
+  <p class="hero-sub">A super-app playbook, a slow-travel hostel chain, and a luxury smartphone tier. Three positioning briefs across conglomerate retail, hospitality and consumer tech. One dossier.</p>
+</header>
+
+<section>
+  <div class="tabs" role="tablist">
+    
+      <span class="tab-ico"><svg viewBox="0 0 24 24"><path d="M4 8h16l-1.5 11a2 2 0 0 1-2 1.7h-9A2 2 0 0 1 5.5 19z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></span>
+      <span class="tab-meta"><span class="tab-num">Brief 01</span><span class="tab-name">Tata Neu</span></span>
+    
+    
+      <span class="tab-ico"><svg viewBox="0 0 24 24"><path d="M3 19l6-9 4 5 3-4 5 8z"/><circle cx="17" cy="6" r="2"/></svg></span>
+      <span class="tab-meta"><span class="tab-num">Brief 02</span><span class="tab-name">Young Monk</span></span>
+    
+    
+      <span class="tab-ico"><svg viewBox="0 0 24 24"><path d="M4 8l4-5h8l4 5-8 13z"/><path d="M4 8h16M10 3l2 5 2-5"/></svg></span>
+      <span class="tab-meta"><span class="tab-num">Brief 03</span><span class="tab-name">Moto Signature</span></span>
+    
+  </div>
+
+  <div class="brief-card on" id="b1">
+    <div class="brief-top">
+      <div class="big-ico"><svg viewBox="0 0 24 24"><path d="M4 8h16l-1.5 11a2 2 0 0 1-2 1.7h-9A2 2 0 0 1 5.5 19z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></div>
+      <div class="brief-top-meta">
+        <div class="brief-num"><span>Brief 01</span><span class="tag">Super-app</span><span class="tag">B2C</span><span class="tag">Strategic playbook</span></div>
+        <h3>Tata Neu  · the progress playbook</h3>
+      </div>
+    </div>
+    <p class="brief-line">Not another shopping app. A platform that turns every household choice into progress.</p>
+    <div class="brief-body">
+      <div class="brief-col">
+        <h4><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5l3 2"/></svg>The problem</h4>
+        <p>Tata Neu had scale, parentage and loyalty data, but the super-app lane was already loud with PhonePe, Paytm and Amazon. Another "everything app" was a race to the bottom.</p>
+        <h4><svg viewBox="0 0 24 24"><path d="M12 3l2.6 6.3L21 10l-5 4.7L17.2 21 12 17.7 6.8 21 8 14.7 3 10l6.4-.7z"/></svg>The angle</h4>
+        <p>Reframe the category from feature-breadth to progress-with-every-choice. Tata Neu isn't a utility; it's a curation layer for smart spenders, with NeuCoins as the continuity spine across Tata's household brands.</p>
+      </div>
+      <div class="brief-col">
+        <h4><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 14h6"/></svg>What shipped</h4>
+        <p>Brand playbook covering positioning, tone of voice, category framing, platform strategy across Meta / YouTube / X / LinkedIn, and the content-pillar mix. Built while at FoxyMoron across the Tata Neu mandate.</p>
+        <h4><svg viewBox="0 0 24 24"><path d="M4 12h16M4 7h10M4 17h12"/></svg>The line</h4>
+        <p>Tata Neu. Grow with every choice you make.</p>
+      </div>
+    </div>
+    <div class="proof">
+      <div class="proof-cell">7+<span>Tata businesses mapped</span></div>
+      <div class="proof-cell">4<span>Platform lanes defined</span></div>
+      <div class="proof-cell">70 / 20 / 10<span>Content pillar mix</span></div>
+    </div>
+  </div>
+
+  <div class="brief-card" id="b2">
+    <div class="brief-top">
+      <div class="big-ico"><svg viewBox="0 0 24 24"><path d="M3 19l6-9 4 5 3-4 5 8z"/><circle cx="17" cy="6" r="2"/></svg></div>
+      <div class="brief-top-meta">
+        <div class="brief-num"><span>Brief 02</span><span class="tag">Hostel · Cafe</span><span class="tag">Hospitality</span><span class="tag">Brand voice</span></div>
+        <h3>Young Monk  · the slow-travel chain</h3>
+      </div>
+    </div>
+    <p class="brief-line">Not another hostel. A permission slip to unplug, exhale, and just be.</p>
+    <div class="brief-body">
+      <div class="brief-col">
+        <h4><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5l3 2"/></svg>The problem</h4>
+        <p>India's hostel market had flattened into a template: party-led, Instagram-shot, cheap beds stacked around a rooftop. Young Monk ran six locations (Manali, Jibhi, Dharamkot, Goa, Jaipur, Rishikesh) with a fundamentally quieter promise, and its voice needed to separate from the party-hostel default.</p>
+        <h4><svg viewBox="0 0 24 24"><path d="M12 3l2.6 6.3L21 10l-5 4.7L17.2 21 12 17.7 6.8 21 8 14.7 3 10l6.4-.7z"/></svg>The angle</h4>
+        <p>Position Young Monk as the anti-checklist stay. The locations are the indulgence. The cafe is the soul. The community is the product. Pricing of a cafe in the setting of a vacation, for travellers who want to be, not perform.</p>
+      </div>
+      <div class="brief-col">
+        <h4><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 14h6"/></svg>What shipped</h4>
+        <p>Full website voice and copy: hostel pages across six locations, cafe pages, about / history / mission / careers / community / volunteer, brand-ambassador narrative, house rules, FAQs. Freelance mandate alongside agency work.</p>
+        <h4><svg viewBox="0 0 24 24"><path d="M4 12h16M4 7h10M4 17h12"/></svg>The line</h4>
+        <p>Come for the food. Stay for the soul.</p>
+      </div>
+    </div>
+    <div class="proof">
+      <div class="proof-cell">6<span>Locations voiced</span></div>
+      <div class="proof-cell">Hostel + Cafe<span>Two product lines</span></div>
+      <div class="proof-cell">Freelance<span>End-to-end copy</span></div>
+    </div>
+  </div>
+
+  <div class="brief-card" id="b3">
+    <div class="brief-top">
+      <div class="big-ico"><svg viewBox="0 0 24 24"><path d="M4 8l4-5h8l4 5-8 13z"/><path d="M4 8h16M10 3l2 5 2-5"/></svg></div>
+      <div class="brief-top-meta">
+        <div class="brief-num"><span>Brief 03</span><span class="tag">Consumer tech</span><span class="tag">Launch</span><span class="tag">Brand voice</span></div>
+        <h3>Moto Signature  · the luxury tier</h3>
+      </div>
+    </div>
+    <p class="brief-line">Not another smartphone launch. Luxury in tech, understood as taste, not spec.</p>
+    <div class="brief-body">
+      <div class="brief-col">
+        <h4><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5l3 2"/></svg>The problem</h4>
+        <p>Premium smartphone launches default to decibels and specs. Moto wanted the Signature Series to sit inside a different category altogether — the "Finer Things Club" cohort who buy on discernment, not announcement.</p>
+        <h4><svg viewBox="0 0 24 24"><path d="M12 3l2.6 6.3L21 10l-5 4.7L17.2 21 12 17.7 6.8 21 8 14.7 3 10l6.4-.7z"/></svg>The angle</h4>
+        <p>Pitch luxury as understated sophistication, not ostentatious display. Archetype: The Sage meets The Creator. Tone: poetic restraint, intelligent luxury. Visual: monochrome, cinematic minimalism — art gallery, not retail.</p>
+      </div>
+      <div class="brief-col">
+        <h4><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 14h6"/></svg>What shipped</h4>
+        <p>Strategic-intent layer, core emotion, archetype, tone of voice, design semantics, visual language, sonic world, and the campaign-line architecture (primary route + two alt routes). Produced at Sociowash.</p>
+        <h4><svg viewBox="0 0 24 24"><path d="M4 12h16M4 7h10M4 17h12"/></svg>The line</h4>
+        <p>Moto Signature. For Those Who Know.</p>
+      </div>
+    </div>
+    <div class="proof">
+      <div class="proof-cell">Luxury tier<span>Finer Things Club</span></div>
+      <div class="proof-cell">3<span>Concept routes developed</span></div>
+      <div class="proof-cell">Sage + Creator<span>Brand archetype</span></div>
+    </div>
+  </div>
+</section>
+
+<nav class="pagenav">
+  <a href="ecostone.html">← Ecostone</a>
+  <a href="projects.html#ch-01" class="prim">Chapter index ↗</a>
+  <a href="projects.html#ch-02">Next chapter · Messaging →</a>
+</nav>
+
+<footer>
+  © Simran Raj Bhyana · <a href="index.html">Home</a> · <a href="projects.html">Projects</a> · <a href="cv.html">CV</a>
+</footer>
+
+<script>
+document.querySelectorAll('.tab').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const id=btn.dataset.target;
+    document.querySelectorAll('.tab').forEach(b=>b.setAttribute('aria-selected', b===btn?'true':'false'));
+    document.querySelectorAll('.brief-card').forEach(c=>c.classList.toggle('on', c.id===id));
+  });
+});
+</script>
+
+</html>

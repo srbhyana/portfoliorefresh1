@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="b2b">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+<title>Spry, B2B · Simran Raj Bhyana</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;1,300;1,400&family=JetBrains+Mono:wght@400;500&family=Syne:wght@400;700;800&display=swap" rel="stylesheet"/>
+<style>
+:root{--gold:#c8a96e;--gold2:#e8c87a;
+  --bg:#060a18;--bg2:#0a1022;--surf:#0e1830;
+  --text:#dce8ff;--mute:rgba(220,232,255,.52);
+  --border:rgba(130,170,255,.12);--border2:rgba(200,169,110,.22);
+  --ease:cubic-bezier(.16,1,.3,1);
+  --font-sans:'Inter',sans-serif;--font-disp:'Syne',sans-serif;--font-mono:'JetBrains Mono',monospace}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font-sans);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--gold);color:#000}
+a{color:inherit;text-decoration:none}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:20px 52px;background:rgba(6,10,24,.72);backdrop-filter:blur(20px) saturate(140%);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:var(--font-disp);font-size:17px;font-weight:800;letter-spacing:-.02em}
+.nav-logo span{color:var(--gold)}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{font-size:11.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(220,232,255,.62);transition:color .25s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--gold);transition:width .3s var(--ease)}
+.nav-links a:hover,.nav-links a.active{color:var(--text)}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.nav-cta{font-size:12px;padding:9px 22px;border:1px solid var(--border2);border-radius:100px;color:var(--gold);background:rgba(200,169,110,.04);backdrop-filter:blur(12px)}
+.nav-cta:hover{background:var(--gold);color:#000}
+
+.back{position:fixed;top:90px;left:52px;z-index:50;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);transition:color .25s}
+.back:hover{color:var(--gold)}
+
+.hero{min-height:92vh;display:flex;flex-direction:column;justify-content:flex-end;padding:180px 52px 80px;max-width:1280px;margin:0 auto;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 60% 55% at 80% 20%,rgba(100,160,220,.2),transparent 70%),radial-gradient(ellipse 30% 40% at 5% 85%,rgba(200,169,110,.06),transparent 60%)}
+.meta-row{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:28px;font-size:10.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--mute);position:relative}
+.meta-row .dot{color:var(--gold)}
+.meta-row b{color:var(--gold);font-weight:500}
+h1{font-family:var(--font-disp);font-size:clamp(44px,6.6vw,84px);font-weight:800;line-height:.95;letter-spacing:-.035em;margin-bottom:32px;position:relative}
+h1 em{font-style:italic;font-weight:400;color:var(--gold)}
+.hero-sub{font-size:19px;color:var(--mute);max-width:760px;line-height:1.65;margin-bottom:48px;position:relative}
+.stats{display:flex;gap:48px;flex-wrap:wrap;padding-top:32px;border-top:1px solid var(--border);position:relative}
+.stat b{display:block;font-family:var(--font-disp);font-size:30px;font-weight:800;letter-spacing:-.02em;color:var(--text);line-height:1;margin-bottom:6px}
+.stat b em{font-style:italic;color:var(--gold);font-weight:400}
+.stat span{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute)}
+
+section{padding:72px 52px;max-width:1280px;margin:0 auto}
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;padding-bottom:24px;margin-bottom:48px;border-bottom:1px solid var(--border)}
+.sec-num{font-family:var(--font-disp);font-size:12px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase}
+h2{font-family:var(--font-disp);font-size:clamp(34px,4.8vw,58px);font-weight:700;letter-spacing:-.02em;line-height:1.05}
+h2 em{font-style:italic;font-weight:400;color:var(--gold)}
+
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.two-col h3{font-family:var(--font-disp);font-size:22px;font-weight:700;margin-bottom:16px;letter-spacing:-.01em;color:var(--gold)}
+.two-col p{font-size:15.5px;color:rgba(220,232,255,.78);margin-bottom:16px;line-height:1.75}
+.two-col p b{color:var(--text);font-weight:500}
+
+.pull{font-family:var(--font-disp);font-size:clamp(28px,3.6vw,48px);font-weight:400;font-style:italic;line-height:1.2;letter-spacing:-.015em;max-width:1040px;margin:0 auto;text-align:center;padding:60px 0}
+.pull span{color:var(--gold)}
+.pull::before,.pull::after{content:'"';color:var(--gold)}
+.pull::before{margin-right:4px}.pull::after{margin-left:4px}
+
+.positioning-card{padding:48px 52px;border:1px solid var(--border2);border-radius:16px;background:linear-gradient(135deg,rgba(200,169,110,.06),rgba(10,16,34,.3));backdrop-filter:blur(20px);text-align:center;box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
+.positioning-card .lbl{font-family:var(--font-mono);font-size:11px;letter-spacing:.28em;color:var(--gold);text-transform:uppercase;margin-bottom:20px}
+.positioning-card .stmt{font-family:var(--font-disp);font-size:clamp(22px,2.4vw,30px);font-weight:400;font-style:italic;line-height:1.35;max-width:840px;margin:0 auto;letter-spacing:-.01em}
+.positioning-card .stmt b{font-weight:700;font-style:normal;color:var(--gold)}
+
+.icp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.icp{padding:28px;border:1px solid var(--border);border-radius:12px;background:linear-gradient(135deg,rgba(22,38,72,.5),rgba(10,16,34,.3));backdrop-filter:blur(14px);transition:all .35s var(--ease)}
+.icp:hover{border-color:var(--border2);transform:translateY(-3px)}
+.icp .tag{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.22em;color:var(--gold);text-transform:uppercase;margin-bottom:12px}
+.icp h4{font-family:var(--font-disp);font-size:20px;font-weight:700;margin-bottom:10px;letter-spacing:-.01em}
+.icp p{font-size:13.5px;color:rgba(220,232,255,.75);line-height:1.6}
+
+.comp{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:24px}
+.comp-card{padding:28px 32px;border:1px solid var(--border);border-radius:12px;background:linear-gradient(135deg,rgba(255,255,255,.03),rgba(255,255,255,.008))}
+.comp-card b{display:block;font-family:var(--font-disp);font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.comp-card ul{list-style:none;display:flex;flex-wrap:wrap;gap:10px}
+.comp-card li{font-size:13px;padding:8px 14px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:100px;color:rgba(220,232,255,.82);font-family:var(--font-mono);letter-spacing:.02em}
+
+.brand-watermark{position:absolute;top:90px;right:-60px;width:clamp(340px,40vw,560px);pointer-events:none;z-index:0;opacity:.09;filter:grayscale(100%) brightness(1.8) contrast(.85);mix-blend-mode:screen;mask-image:radial-gradient(ellipse at center,#000 30%,transparent 72%);-webkit-mask-image:radial-gradient(ellipse at center,#000 30%,transparent 72%)}
+.brand-chip{display:inline-flex;align-items:center;gap:12px;padding:6px 16px 6px 6px;border:1px solid var(--border2);border-radius:100px;background:rgba(200,169,110,.05);backdrop-filter:blur(12px);margin-bottom:24px;position:relative;z-index:2}
+.brand-chip img{height:28px;width:28px;border-radius:50%;object-fit:cover;border:1px solid var(--border2)}
+.brand-chip span{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:500}
+
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.pillar{padding:30px;border:1px solid var(--border);border-radius:12px;background:linear-gradient(135deg,rgba(22,38,72,.5),rgba(10,16,34,.3));backdrop-filter:blur(14px)}
+.pillar .num{font-family:var(--font-disp);font-size:38px;font-weight:800;color:var(--gold);opacity:.35;line-height:1;margin-bottom:12px}
+.pillar h4{font-family:var(--font-disp);font-size:19px;font-weight:700;margin-bottom:10px;letter-spacing:-.01em}
+.pillar p{font-size:13.5px;color:rgba(220,232,255,.72);line-height:1.6}
+
+.deliverables{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.del{padding:22px 26px;border:1px solid var(--border);border-radius:10px;background:linear-gradient(135deg,rgba(255,255,255,.03),rgba(255,255,255,.008));backdrop-filter:blur(14px)}
+.del b{display:block;font-family:var(--font-disp);font-size:12.5px;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
+.del p{font-size:14px;color:rgba(220,232,255,.78);line-height:1.6}
+
+.pagenav{position:static!important;top:auto!important;z-index:auto!important;background:transparent!important;backdrop-filter:none!important;border-bottom:none!important;padding:60px 52px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border);max-width:1280px;margin:60px auto 0;flex-wrap:wrap;gap:20px}
+.pagenav a{font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--mute);transition:color .25s}
+.pagenav a:hover{color:var(--gold)}
+.pagenav a.prim{color:var(--gold);border:1px solid var(--border2);padding:14px 28px;border-radius:100px;background:rgba(200,169,110,.04)}
+.pagenav a.prim:hover{background:var(--gold);color:#000}
+footer{padding:40px 52px;border-top:1px solid var(--border);text-align:center;color:var(--mute);font-size:12px;letter-spacing:.08em}
+footer a{color:var(--gold)}
+
+/* FRAMEWORK DIAGRAMS */
+.fw-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+.fw-caption{font-family:var(--font-mono);font-size:11px;letter-spacing:.22em;color:var(--gold);text-transform:uppercase;margin-bottom:14px}
+.fw-title{font-family:var(--font-disp);font-size:26px;font-weight:700;letter-spacing:-.01em;margin-bottom:14px;line-height:1.15}
+.fw-title em{font-style:italic;font-weight:400;color:var(--gold)}
+.fw-body p{font-size:14.5px;color:rgba(220,232,255,.78);line-height:1.7;margin-bottom:10px}
+.fw-body p b{color:var(--text);font-weight:500}
+.fw-legend{display:flex;flex-direction:column;gap:10px;margin-top:18px}
+.fw-legend div{display:grid;grid-template-columns:14px 1fr;gap:12px;align-items:center;font-size:13px;color:rgba(220,232,255,.78)}
+.fw-legend i{width:14px;height:14px;border-radius:3px;display:inline-block}
+
+/* TAM/SAM/SOM concentric */
+.tss{position:relative;width:100%;aspect-ratio:1;max-width:460px;margin:0 auto}
+.tss svg{width:100%;height:100%;overflow:visible}
+.tss-ring{fill:none;stroke-width:1.2}
+.tss-ring.tam{stroke:rgba(130,170,255,.35)}
+.tss-ring.sam{stroke:rgba(200,169,110,.45)}
+.tss-ring.som{stroke:var(--gold)}
+.tss-fill.tam{fill:rgba(130,170,255,.06)}
+.tss-fill.sam{fill:rgba(200,169,110,.07)}
+.tss-fill.som{fill:rgba(200,169,110,.16)}
+.tss text{font-family:var(--font-mono);font-size:10px;fill:var(--gold);letter-spacing:.2em;text-transform:uppercase}
+.tss text.num{font-family:var(--font-disp);font-size:14px;fill:var(--text);font-weight:700;letter-spacing:-.01em;text-transform:none}
+
+/* 2x2 MATRIX */
+.matrix-wrap{position:relative;max-width:520px;margin:0 auto;width:100%;padding-left:24px;padding-bottom:30px}
+.matrix{position:relative;aspect-ratio:1;width:100%;border:1px solid var(--border);border-radius:10px;background:linear-gradient(135deg,rgba(22,38,72,.35),rgba(10,16,34,.2))}
+.matrix::before,.matrix::after{content:'';position:absolute;background:rgba(130,170,255,.22)}
+.matrix::before{left:50%;top:8%;bottom:8%;width:1px}
+.matrix::after{top:50%;left:8%;right:8%;height:1px}
+.m-yaxis,.m-xaxis{position:absolute;font-family:var(--font-mono);font-size:10px;letter-spacing:.22em;color:var(--mute);text-transform:uppercase}
+.m-yaxis span{position:absolute;left:0;transform:rotate(-90deg);transform-origin:0 0;white-space:nowrap}
+.m-yaxis span.hi{top:20px}
+.m-yaxis span.lo{top:calc(100% - 54px)}
+.m-yaxis{left:2px;top:0;bottom:30px;width:24px}
+.m-xaxis{left:24px;right:0;bottom:10px;display:flex;justify-content:space-between;padding:0 12px}
+.matrix .m-pt{position:absolute;display:flex;flex-direction:column;align-items:center;gap:5px;transform:translate(-50%,-50%);z-index:2}
+.matrix .m-pt .dot{width:13px;height:13px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(7,12,26,1),0 0 0 5px rgba(200,169,110,.45),0 0 18px rgba(200,169,110,.55)}
+.matrix .m-pt.ghost .dot{background:rgba(130,170,255,.5);box-shadow:0 0 0 4px rgba(7,12,26,1),0 0 0 5px rgba(130,170,255,.2)}
+.matrix .m-pt .lbl{font-family:var(--font-disp);font-size:11.5px;font-weight:700;color:var(--text);padding:2px 8px;background:rgba(7,12,26,.88);border:1px solid var(--border2);border-radius:100px;white-space:nowrap;letter-spacing:-.01em}
+.matrix .m-pt.ghost .lbl{color:rgba(220,232,255,.6);border-color:var(--border)}
+
+/* BARS */
+.bars{display:flex;flex-direction:column;gap:14px}
+.bar-row{display:grid;grid-template-columns:120px 1fr 70px;gap:14px;align-items:center;font-size:12.5px}
+.bar-row .label{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.18em;color:var(--mute);text-transform:uppercase}
+.bar-row .track{height:10px;background:rgba(130,170,255,.08);border-radius:100px;position:relative;overflow:hidden;border:1px solid var(--border)}
+.bar-row .fill{height:100%;border-radius:100px;background:linear-gradient(90deg,var(--gold),var(--gold2));box-shadow:0 0 12px rgba(200,169,110,.4)}
+.bar-row.ghost .fill{background:linear-gradient(90deg,rgba(130,170,255,.35),rgba(130,170,255,.2));box-shadow:none}
+.bar-row .val{font-family:var(--font-mono);font-size:11px;color:var(--gold);text-align:right;letter-spacing:.05em}
+.bar-row.ghost .val{color:var(--mute)}
+
+/* POP / POD */
+.pop-pod{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.pop-pod .col{padding:26px 28px;border:1px solid var(--border);border-radius:12px;background:linear-gradient(135deg,rgba(22,38,72,.35),rgba(10,16,34,.25))}
+.pop-pod .col.pod{border-color:var(--border2);background:linear-gradient(135deg,rgba(200,169,110,.1),rgba(10,16,34,.3))}
+.pop-pod h5{font-family:var(--font-disp);font-size:13px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;margin-bottom:14px}
+.pop-pod ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.pop-pod li{font-size:13.5px;color:rgba(220,232,255,.8);padding-left:16px;position:relative;line-height:1.6}
+.pop-pod li::before{content:'';position:absolute;left:0;top:9px;width:6px;height:6px;border-radius:50%;background:var(--gold);opacity:.5}
+.pop-pod .col.pod li::before{opacity:.9;background:var(--gold)}
+
+/* NEEDS LADDER */
+.ladder{display:grid;grid-template-columns:1fr;gap:0;max-width:460px;margin:0 auto;position:relative}
+.ladder .rung{padding:16px 22px;border:1px solid var(--border);border-radius:12px;background:linear-gradient(135deg,rgba(22,38,72,.4),rgba(10,16,34,.2));backdrop-filter:blur(12px);position:relative;margin-bottom:10px;transition:all .3s var(--ease)}
+.ladder .rung:hover{border-color:var(--border2);transform:translateX(4px)}
+.ladder .rung:nth-child(1){margin-left:0;width:60%}
+.ladder .rung:nth-child(2){margin-left:10%;width:70%}
+.ladder .rung:nth-child(3){margin-left:20%;width:80%}
+.ladder .rung:nth-child(4){margin-left:30%;width:80%;border-color:var(--border2);background:linear-gradient(135deg,rgba(200,169,110,.15),rgba(10,16,34,.3))}
+.ladder .rung .lvl{font-family:var(--font-mono);font-size:10px;letter-spacing:.24em;color:var(--gold);text-transform:uppercase;margin-bottom:4px}
+.ladder .rung .txt{font-family:var(--font-disp);font-size:15px;font-weight:700;letter-spacing:-.01em}
+.ladder .rung .txt em{font-style:italic;font-weight:400;color:var(--gold)}
+.ladder .connector{position:absolute;left:8px;top:0;bottom:0;width:0;border-left:1px dashed rgba(200,169,110,.3);z-index:-1}
+
+/* FUNNEL (Decision flow) */
+.funnel{display:flex;flex-direction:column;gap:6px;align-items:center;max-width:440px;margin:0 auto}
+.funnel .step{width:100%;text-align:center;padding:12px 18px;border:1px solid var(--border);background:linear-gradient(135deg,rgba(22,38,72,.35),rgba(10,16,34,.2));border-radius:10px;font-family:var(--font-disp);font-size:13.5px;font-weight:600;letter-spacing:-.005em;position:relative}
+.funnel .step em{font-style:italic;font-weight:400;color:var(--gold);display:block;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:3px}
+.funnel .step:nth-child(1){max-width:95%}
+.funnel .step:nth-child(2){max-width:85%}
+.funnel .step:nth-child(3){max-width:75%}
+.funnel .step:nth-child(4){max-width:65%;border-color:var(--border2);background:linear-gradient(135deg,rgba(200,169,110,.14),rgba(10,16,34,.3))}
+.funnel .arr{font-size:11px;color:var(--gold);line-height:1}
+
+/* QUANT STRIP */
+.qstrip{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:linear-gradient(135deg,rgba(22,38,72,.3),rgba(10,16,34,.15));margin-top:28px}
+.qstrip .q{padding:24px 22px;border-right:1px solid var(--border);text-align:left}
+.qstrip .q:last-child{border-right:0}
+.qstrip .q .k{font-family:var(--font-disp);font-size:30px;font-weight:800;letter-spacing:-.02em;line-height:1;color:var(--text);margin-bottom:6px}
+.qstrip .q .k em{font-style:italic;font-weight:400;color:var(--gold)}
+.qstrip .q .d{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.18em;color:var(--mute);text-transform:uppercase;margin-bottom:4px}
+.qstrip .q .sub{font-size:12px;color:rgba(220,232,255,.65);line-height:1.45}
+
+@media(max-width:900px){
+  .fw-grid{grid-template-columns:1fr;gap:28px}
+  .pop-pod{grid-template-columns:1fr}
+  .qstrip{grid-template-columns:1fr 1fr}
+  .qstrip .q:nth-child(2){border-right:0}
+  .qstrip .q:nth-child(1),.qstrip .q:nth-child(2){border-bottom:1px solid var(--border)}
+  .ladder .rung{width:100%!important;margin-left:0!important}
+  .matrix{padding:44px 44px 30px 30px}
+  .bar-row{grid-template-columns:90px 1fr 60px;gap:10px}
+}
+@media(max-width:900px){
+  nav{padding:16px 22px}.nav-links{display:none}
+  .back{left:22px;top:72px}
+  .hero{padding:140px 24px 60px}section{padding:70px 24px}
+  .two-col,.icp-grid,.comp,.pillars,.deliverables{grid-template-columns:1fr;gap:20px}
+  .stats{gap:24px}
+}
+@media(max-width:540px){
+  nav{padding:14px 18px}
+  .back{left:18px;top:64px;font-size:12px}
+  .hero{padding:120px 18px 44px}
+  section{padding:52px 18px}
+  h1{font-size:clamp(36px,10vw,56px)!important}
+  h2{font-size:clamp(24px,6.4vw,34px)!important}
+  .eyebrow{font-size:11px}
+  .stats{flex-wrap:wrap;gap:18px}
+  .stat-num{font-size:32px}
+}
+
+</style>
+</head>
+
+
+<nav>
+  <a class="nav-logo" href="index.html">Simran<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="projects.html" class="active">Projects</a></li>
+    <li><a href="cv.html">CV</a></li>
+    <li><a href="author-ai.html">Author.AI</a></li>
+    <li><a href="index.html#contact">Connect</a></li>
+  </ul>
+  <a href="https://chatgpt.com/g/g-69517b4ef32481918f687dfdaffbfc55-simran-raj-bhyana-for-hire" target="_blank" class="nav-cta">Simran.GPT ↗</a>
+</nav>
+
+<a href="projects.html#ch-03" class="back">← B2B chapter</a>
+
+<header class="hero">
+  <img src="img/spry-logo.jpeg" alt="" class="brand-watermark" aria-hidden="true"/>
+  <div class="brand-chip"><img src="img/spry-logo.jpeg" alt=""/><span>Spry Therapeutics</span></div>
+  <div class="meta-row">
+    <span>Case 08</span><span class="dot">·</span>
+    <span>B2B · Healthtech</span><span class="dot">·</span>
+    <span>Spry Therapeutics</span><span class="dot">·</span>
+    <span>PMM writing assignment</span>
+  </div>
+  <h1>Keep your clinicspry.</h1>
+  <p class="hero-sub">A full PMM assignment for Spry, the AI-native clinical operating system for outpatient rehab. Market segmented end-to-end with BrowseAI + NotebookLM + a three-prompt framework across 8 competitors. ICP modelled at 38-50K US clinics. Positioning anchored on proactive vs. reactive, not feature parity. AI-generated messaging example shipped. Tagline, narrative architecture, and a Nothing-Phone-style competitive frame.</p>
+  <div class="stats">
+    <div class="stat">5×3×4<span>ICP segmentation matrix</span></div>
+    <div class="stat">8+<span>Competitors, deep-mapped</span></div>
+    <div class="stat">3<span>Messaging pillars, proof-backed</span></div>
+    <div class="stat">1<span>AI-generated pitch film</span></div>
+  </div>
+</header>
+
+<section>
+  <div class="sec-head">
+    <div><div class="sec-num">01 · Method</div><h2>How the work was done</h2></div>
+  </div>
+  <div class="two-col">
+    <div>
+      <h3>Research stack</h3>
+      <p>BrowseAI scraped every competitor's YouTube library into a structured feed. NotebookLM ingested each competitor's product content, changelogs and case studies. A three-prompt framework ran across each competitor: one prompt for business model, one for content strategy, one for observational insights, then compared side-by-side to Spry.</p>
+      <p>Output: one comprehensive competitor table, eight brands deep, scored and rank-ordered. Plus a standalone web audit of Spry's own site mapped against the narrative.</p>
+    </div>
+    <div>
+      <h3>ICP mechanism</h3>
+      <p>Built a market-sizing matrix: ~38K-50K US outpatient clinics × 5 segments × 3 visit tiers × 4 practice-age bands. Each cell scored on unit economics, bottleneck pattern, and Spry's solution fit (Alignment% × Immediacy%). The top ICP cell fell out of the math, not the vibe.</p>
+      <p>The whole model lives in the public Claude artifact and the backing Google Sheet, both linked below.</p>
+    </div>
+  </div>
+  <div class="link-row" style="display:flex;gap:20px;flex-wrap:wrap;margin-top:36px">
+    <a href="https://claude.ai/public/artifacts/7ecab780-a53a-43a8-b465-4e557407b46d" target="_blank" style="font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);padding:14px 22px;border:1px solid var(--border2);border-radius:100px;background:rgba(200,169,110,.04)">Claude artifact, competitor table ↗</a>
+    <a href="https://docs.google.com/spreadsheets/d/11c_IA4rcEX2tGsg58S7wBdXnp7SzhsIFpmWOcn17Zjw/edit?gid=0#gid=0" target="_blank" style="font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);padding:14px 22px;border:1px solid var(--border2);border-radius:100px;background:rgba(200,169,110,.04)">ICP matrix, Google Sheet ↗</a>
+    <a href="https://ai.invideo.io/watch/T4t3wVfhgg5" target="_blank" style="font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);padding:14px 22px;border:1px solid var(--border2);border-radius:100px;background:rgba(200,169,110,.04)">AI-generated pitch film ↗</a>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <div><div class="sec-num">02 · Positioning</div><h2>The full statement</h2></div>
+  </div>
+  <div class="positioning-card">
+    <div class="lbl">Positioning statement</div>
+    <div class="stmt">For rehab practices losing revenue to denials and clinician time to documentation, Spry is the proactive clinical operating system that prevents problems before they happen, catching denials before submission, flagging authorizations before expiry, and completing notes before therapists finish typing, so clinics run at their natural rhythm and therapists go home at 5 PM.</div>
+    <div class="stmt" style="margin-top:28px;font-size:clamp(17px,1.6vw,22px);color:var(--mute)">Unlike WebPT (legacy, no AI, outsourced RCM) or Prompt (premium polish, bolt-on AI, 30-40% surcharge), Spry is AI-native and unified, one system, one cost, one outcome: a spry clinic.</div>
+  </div>
+</section>
+
+<div class="pull">Spry is named after the <span>result</span>, not the process.</div>
+
+<section>
+  <div class="sec-head">
+    <div><div class="sec-num">03 · Market sizing</div><h2>TAM, SAM, SOM</h2></div>
+  </div>
+  <div class="fw-grid">
+    <div class="fw-body">
+      <div class="fw-caption">Top-down, demand-constrained</div>
+      <div class="fw-title">The math, not the vibe</div>
+      <p>US outpatient rehab is ~38K–50K clinics, a number Spry can't exceed. So I modelled Top-Down: TAM → SAM (practices who can afford cloud SaaS + run on structured RCM) → SOM (the slice Spry can realistically close in the next 18 months).</p>
+      <p>Each ring was cross-multiplied against 5 segments × 3 visit tiers × 4 practice-age bands to find the intersection cell where unit economics and bottleneck pattern both line up with Spry's AI-native stack.</p>
+      <div class="fw-legend">
+        <div><i style="background:rgba(130,170,255,.55)"></i><span>TAM · ~50K clinics — every US outpatient rehab, SMB → IDN</span></div>
+        <div><i style="background:rgba(200,169,110,.65)"></i><span>SAM · ~22K clinics — cloud-ready, 5+ locations, in-house or hybrid RCM</span></div>
+        <div><i style="background:var(--gold)"></i><span>SOM · ~2.2K clinics — Spry's reachable 18-month win-zone</span></div>
+      </div>
+    </div>
+    <div class="tss">
+      <svg viewBox="0 0 400 400">
+        <circle class="tss-fill tam" cx="200" cy="200" r="185"/>
+        <circle class="tss-ring tam" cx="200" cy="200" r="185"/>
+        <circle class="tss-fill sam" cx="200" cy="230" r="120"/>
+        <circle class="tss-ring sam" cx="200" cy="230" r="120"/>
+        <circle class="tss-fill som" cx="200" cy="260" r="60"/>
+        <circle class="tss-ring som" cx="200" cy="260" r="60"/>
+        <text x="200" y="36" text-anchor="middle">TAM</text>
+        <text class="num" x="200" y="58" text-anchor="middle">~50K clinics</text>
+        <text x="200" y="138" text-anchor="middle">SAM</text>
+        <text class="num" x="200" y="160" text-anchor="middle">~22K</text>
+        <text x="200" y="248" text-anchor="middle">SOM</text>
+        <text class="num" x="200" y="270" text-anchor="middle">~2.2K</text>
+      </svg>
+    </div>
+  </div>
+  <div class="qstrip">
+    <div class="q"><div class="d">Top-10% visit vol.</div><div class="k">1–20</div><div class="sub">Locations per anchor ICP</div></div>
+    <div class="q"><div class="d">TCO saved / yr</div><div class="k">$394–$726K</div><div class="sub">vs. legacy + bolt-ons, 10-loc chain</div></div>
+    <div class="q"><div class="d">Clean claim rate</div><div class="k">92%</div><div class="sub">Billing-engine promise, pre-submission</div></div>
+    <div class="q"><div class="d">Documentation</div><div class="k">20→2 min</div><div class="sub">Per note, AI Scribe + SOAP prefill</div></div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <div><div class="sec-num">04 · ICP</div><h2>Where the math lands</h2></div>
+  </div>
+  <div class="icp-grid">
+    <div class="icp">
+      <div class="tag">Today, anchor</div>
+      <h4>Mid-market · 1-20 locations</h4>
+      <p>Top-10% visit volume, 5-10 years mature. Clinical director + ops lead + billing lead. Saves $394K-$726K/year in TCO vs. alternatives for a 10-location chain.</p>
+    </div>
+    <div class="icp">
+      <div class="tag">Next 18 months</div>
+      <h4>Regional chains</h4>
+      <p>20-50 locations, central ops team, in-house or hybrid RCM. Buyer = COO or VP Ops. Win condition = consolidation story + proof of AI-native denial prevention.</p>
+    </div>
+    <div class="icp">
+      <div class="tag">Enterprise bridge</div>
+      <h4>IDN · health systems</h4>
+      <p>50+ locations inside a health network. Data-moat becomes the pitch: "We've processed X million claims. Our AI has seen every denial pattern your network will face."</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <div><div class="sec-num">05 · Competitive</div><h2>Nokia, Samsung, Nothing Phone</h2></div>
+  </div>
+  <div class="fw-grid" style="margin-bottom:48px">
+    <div class="matrix-wrap">
+      <div class="m-yaxis"><span class="hi">AI-NATIVE</span><span class="lo">BOLT-ON</span></div>
+      <div class="matrix">
+        <div class="m-pt ghost" style="left:22%;top:72%"><span class="dot"></span><span class="lbl">WebPT</span></div>
+        <div class="m-pt ghost" style="left:78%;top:54%"><span class="dot"></span><span class="lbl">Prompt</span></div>
+        <div class="m-pt" style="left:34%;top:22%"><span class="dot"></span><span class="lbl">Spry</span></div>
+      </div>
+      <div class="m-xaxis"><span>LEGACY TCO</span><span>PREMIUM TCO</span></div>
+    </div>
+    <div class="fw-body">
+      <div class="fw-caption">2×2 · Positioning frame</div>
+      <div class="fw-title">Proactive, AI-native, unified</div>
+      <p>WebPT is Nokia, it built the category, but it's stuck on legacy architecture with outsourced RCM that takes 6-10% of revenue. Prompt is Samsung, polished and premium, but AI is bolt-on and pricing is 30-40% above the field.</p>
+      <p>Spry is Nothing Phone, the architectural challenger, designed AI-native from day one with RCM brought in-house at 4%. One platform, one cost, one outcome. The Y-axis is not more features, it is where AI lives in the stack.</p>
+    </div>
+  </div>
+  <div class="comp">
+    <div class="comp-card">Nokia · WebPT
+      <ul><li>Legacy inertia</li><li>No AI</li><li>6-10% outsourced RCM</li><li>Largest installed base</li></ul>
+    </div>
+    <div class="comp-card">Samsung · Prompt
+      <ul><li>Premium polish</li><li>Bolt-on AI</li><li>30-40% surcharge</li><li>Feature-first GTM</li></ul>
+    </div>
+  </div>
+  <div class="comp" style="grid-template-columns:1fr;margin-top:20px">
+    <div class="comp-card" style="border-color:var(--border2);background:linear-gradient(135deg,rgba(200,169,110,.08),rgba(10,16,34,.3))">Nothing Phone · Spry
+      <ul><li>AI-native</li><li>Unified, EMR + RCM + HEP in one spine</li><li>4% in-house RCM</li><li>Proactive, not reactive</li><li>Genuine architectural challenger</li></ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <div><div class="sec-num">06 · POP / POD</div><h2>Parity & difference</h2></div>
+  </div>
+  <div class="fw-grid">
+    <div class="pop-pod">
+      <div class="col"><h5>Point of Parity · Category</h5>
+        <ul><li>Cloud-native EMR workflow</li><li>HIPAA-compliant architecture</li><li>Scheduling · charting · billing spine</li><li>Integrations with clearing-houses</li><li>Patient portal + HEP library</li></ul>
+      </div>
+      <div class="col pod"><h5>Point of Difference · Competitive</h5>
+        <ul><li>AI-native, not bolt-on</li><li>Denial prevention pre-submission (92% clean)</li><li>Auth-flag before expiry (2 visits ahead)</li><li>In-house RCM at 4% vs. 6-10%</li><li>One spine, one cost, one outcome</li></ul>
+      </div>
+    </div>
+    <div class="fw-body">
+      <div class="fw-caption">Ries &amp; Trout · Positioning</div>
+      <div class="fw-title">First earn trust, then win</div>
+      <p>Every category buyer demands baseline features to feel safe. POP is the permission to play; POD is the reason to switch. Most AI-era pitches skip POP and collapse into feature-parity arguments.</p>
+      <p>Spry leads with the table-stakes list publicly owned, then moves every other line on the site to difference. The narrative weight of the page shifts from "we also do X" to "we alone prevent Y."</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <div><div class="sec-num">07 · Messaging</div><h2>Three proactive pillars</h2></div>
+  </div>
+  <div class="fw-grid" style="margin-bottom:48px">
+    <div class="fw-body">
+      <div class="fw-caption">Benchmark · Spry vs. industry</div>
+      <div class="fw-title">Every pillar, quantified</div>
+      <p>Each pillar is a claim tied to a number that matters to the clinic owner. Revenue (denials → clean claims), time (documentation), retention (patient HEP + CRM + outcomes). The bars show Spry's promise against the current industry baseline.</p>
+      <p>This turns "proactive" from an adjective into a measurable delta — the only defensible kind in B2B SaaS.</p>
+    </div>
+    <div class="bars">
+      <div class="bar-row"><span class="label">Clean claims</span><span class="track"><span class="fill" style="width:92%"></span></span><span class="val">92%</span></div>
+      <div class="bar-row ghost"><span class="label">· Industry</span><span class="track"><span class="fill" style="width:78%"></span></span><span class="val">78%</span></div>
+      <div class="bar-row"><span class="label">Note time</span><span class="track"><span class="fill" style="width:10%"></span></span><span class="val">&lt;2m</span></div>
+      <div class="bar-row ghost"><span class="label">· Industry</span><span class="track"><span class="fill" style="width:95%"></span></span><span class="val">20m</span></div>
+      <div class="bar-row"><span class="label">RCM cost</span><span class="track"><span class="fill" style="width:20%"></span></span><span class="val">4%</span></div>
+      <div class="bar-row ghost"><span class="label">· Legacy</span><span class="track"><span class="fill" style="width:50%"></span></span><span class="val">6–10%</span></div>
+      <div class="bar-row"><span class="label">AR days</span><span class="track"><span class="fill" style="width:40%"></span></span><span class="val">−40%</span></div>
+      <div class="bar-row ghost"><span class="label">· Baseline</span><span class="track"><span class="fill" style="width:100%"></span></span><span class="val">1.0×</span></div>
+    </div>
+  </div>
+  <div class="pillars">
+    <div class="pillar">
+      <div class="num">01</div>
+      <h4>Proactive Revenue Intelligence</h4>
+      <p>Billing rules engine catches errors before submission. Prior-auth flags fire 2 visits before expiry. Denial prediction stops rejections at the source.</p>
+      <p style="margin-top:10px;color:var(--gold);font-family:var(--font-mono);font-size:12px">92% clean claim rate · 30%+ reimbursement boost · 40%+ AR acceleration</p>
+    </div>
+    <div class="pillar">
+      <div class="num">02</div>
+      <h4>Proactive Workflow Intelligence</h4>
+      <p>AI Scribe maps speech to template fields. SOAP prefill teaches standards to new grads. Real-time compliance pop-ups fire before audits catch errors.</p>
+      <p style="margin-top:10px;color:var(--gold);font-family:var(--font-mono);font-size:12px">20 min → under 2 min per note · 60% less admin time · 4.8/5 G2, 4.9/5 Capterra</p>
+    </div>
+    <div class="pillar">
+      <div class="num">03</div>
+      <h4>Proactive Patient Value</h4>
+      <p>HEP programs created, curated, tracked in-platform, insurance-covered at zero patient cost. Birthday reminders, follow-up automation, progress tracking, the retention engine and the referral engine.</p>
+      <p style="margin-top:10px;color:var(--gold);font-family:var(--font-mono);font-size:12px">HEP + CRM + outcomes, no competitor integrates all three</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <div><div class="sec-num">08 · Buyer ladder</div><h2>Features → terminal benefit</h2></div>
+  </div>
+  <div class="fw-grid">
+    <div class="fw-body">
+      <div class="fw-caption">FAB · Laddering</div>
+      <div class="fw-title">Clinicians buy their Friday night back</div>
+      <p>Clinic owners name features in procurement ("AI scribe, denial engine, HEP library"). They justify purchases with advantages ("faster notes, fewer rejections"). But the terminal value — the reason they'll switch at cost — is personal: therapists leaving on time, owners stopping the Sunday-night claim cleanup, a clinic that runs instead of fights itself.</p>
+      <p>Every landing line for Spry should ladder down to that terminal rung. Not "AI that automates," but "go home at 5."</p>
+    </div>
+    <div class="ladder">
+      <div class="rung"><div class="lvl">Feature</div><div class="txt">AI Scribe · Denial engine · HEP</div></div>
+      <div class="rung"><div class="lvl">Advantage</div><div class="txt">Faster notes, fewer rejections, better retention</div></div>
+      <div class="rung"><div class="lvl">Benefit</div><div class="txt">Staff hours back, revenue recovered, patients stick</div></div>
+      <div class="rung"><div class="lvl">Terminal value</div><div class="txt">A clinic that runs at its natural rhythm</div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <div><div class="sec-num">09 · Decision path</div><h2>How a clinic actually buys</h2></div>
+  </div>
+  <div class="fw-grid">
+    <div class="funnel">
+      <div class="step">Need · triggerDenials spike, therapist burnout, auth expired</div>
+      <div class="arr">▼</div>
+      <div class="step">AwarenessPeer chains → conferences → G2 shortlists</div>
+      <div class="arr">▼</div>
+      <div class="step">EvaluateDemo · pilot · 3 bids, same RFP</div>
+      <div class="arr">▼</div>
+      <div class="step">SelectUnified system, lowest TCO, highest trust</div>
+    </div>
+    <div class="fw-body">
+      <div class="fw-caption">Engel-Blackwell-Miniard · Adapted</div>
+      <div class="fw-title">The four stages of a rehab buy</div>
+      <p>Every healthcare B2B buy starts with a pain spike, not a whim. The trigger is a denial storm or a therapist quitting. Awareness forms through peers, not paid ads. Evaluation is a procurement bake-off, usually three bids against the same RFP.</p>
+      <p>Spry's content has to earn each stage: thesis pieces for awareness, comparison pages for evaluation, a no-risk pilot offer for selection. Every piece of content I proposed maps to exactly one rung.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <div><div class="sec-num">10 · Narrative</div><h2>The architecture</h2></div>
+  </div>
+  <div class="deliverables">
+    <div class="del">Brand promise<p>Spry = the result, not the process. A promise to patients ("I want to be spry again") and clinicians ("This software won't weigh me down").</p></div>
+    <div class="del">Positioning philosophy<p>We are PT for PT. Every hinge in your workflow where things get clunky, we oil it. We bring you closer to your natural movement.</p></div>
+    <div class="del">Lead differentiator<p>Proactive, we prevent, not chase. Denials caught before submission. Auth flagged before expiry. Notes prefilled before typing.</p></div>
+    <div class="del">AI philosophy<p>Human intentions, artificial intelligence. Built by therapists, for therapists. We talk to PT like PT, not at them.</p></div>
+    <div class="del">Narrative device<p>The Flow vs. The Stutter. Legacy = stutter (crashes, workarounds, bolt-ons). Spry = flow (unified, proactive, smooth).</p></div>
+    <div class="del">Tagline<p style="font-family:var(--font-disp);font-size:22px;font-style:italic;color:var(--gold);font-weight:400;line-height:1.2">Keep your clinic spry.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <div><div class="sec-num">11 · Shipped</div><h2>Full assignment deliverables</h2></div>
+  </div>
+  <div class="deliverables">
+    <div class="del">Competitor table<p>8 competitors × YouTube + product + observational insights, via BrowseAI + NotebookLM + 3-prompt framework. Public Claude artifact.</p></div>
+    <div class="del">ICP matrix<p>5 × 3 × 4 segmentation of the US outpatient rehab market. Unit economics and bottleneck scoring. Backed by the Google Sheet model.</p></div>
+    <div class="del">Web audit<p>Spry's own site mapped against the new narrative architecture. Gaps flagged, copy rewritten section-by-section.</p></div>
+    <div class="del">Messaging example<p>AI-generated pitch film built in InVideo, the positioning, in 60 seconds, without a shoot.</p></div>
+    <div class="del">Narrative architecture<p>11-layer document: brand promise, positioning philosophy, lead differentiator, AI philosophy, narrative device, tagline, pillars, competitive frame, enterprise bridge.</p></div>
+    <div class="del">Two indices<p>Every decision in the market comes down to Money and Time. Spry wins on both, visualised as a 2×2.</p></div>
+  </div>
+</section>
+
+<nav class="pagenav">
+  <a href="projects.html#ch-03">← Back to B2B chapter</a>
+  <a href="writesonic.html" class="prim">Next · Writesonic →</a>
+</nav>
+
+<footer>
+  © Simran Raj Bhyana · <a href="index.html">Home</a> · <a href="projects.html">Projects</a> · <a href="cv.html">CV</a>
+</footer>
+
+
+</html>

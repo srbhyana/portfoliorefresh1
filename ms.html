@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="messaging">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+<title>Marks & Spencer, Messaging · Simran Raj Bhyana</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Syne:wght@400;700;800&display=swap" rel="stylesheet"/>
+<style>
+:root{--gold:#c8a96e;--gold2:#e8c87a;
+  --bg:#070c1a;--bg2:#0a1022;--surf:#0e1830;
+  --text:#dce8ff;--mute:rgba(220,232,255,.52);
+  --border:rgba(130,170,255,.12);--border2:rgba(200,169,110,.22);
+  --ease:cubic-bezier(.16,1,.3,1);
+  --font-sans:'Inter',sans-serif;--font-disp:'Syne',sans-serif}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font-sans);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--gold);color:#000}
+a{color:inherit;text-decoration:none}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:20px 52px;background:rgba(7,12,26,.72);backdrop-filter:blur(20px) saturate(140%);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:var(--font-disp);font-size:17px;font-weight:800;letter-spacing:-.02em}
+.nav-logo span{color:var(--gold)}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{font-size:11.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(220,232,255,.62);transition:color .25s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--gold);transition:width .3s var(--ease)}
+.nav-links a:hover,.nav-links a.active{color:var(--text)}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.nav-cta{font-size:12px;padding:9px 22px;border:1px solid var(--border2);border-radius:100px;color:var(--gold);background:rgba(200,169,110,.04);backdrop-filter:blur(12px)}
+.nav-cta:hover{background:var(--gold);color:#000}
+
+.back{position:fixed;top:90px;left:52px;z-index:50;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);transition:color .25s}
+.back:hover{color:var(--gold)}
+
+.hero{min-height:92vh;display:flex;flex-direction:column;justify-content:flex-end;padding:180px 52px 80px;max-width:1280px;margin:0 auto;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 60% 55% at 80% 20%,rgba(200,60,80,.18),transparent 70%),radial-gradient(ellipse 30% 40% at 5% 85%,rgba(200,169,110,.06),transparent 60%)}
+.meta-row{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:28px;font-size:10.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--mute);position:relative}
+.meta-row .dot{color:var(--gold)}
+.meta-row b{color:var(--gold);font-weight:500}
+h1{font-family:var(--font-disp);font-size:clamp(44px,6.6vw,84px);font-weight:800;line-height:.98;letter-spacing:-.035em;margin-bottom:32px;position:relative}
+h1 em{font-style:italic;font-weight:400;color:var(--gold)}
+.hero-sub{font-size:19px;color:var(--mute);max-width:720px;line-height:1.65;margin-bottom:48px;position:relative}
+.stats{display:flex;gap:48px;flex-wrap:wrap;padding-top:32px;border-top:1px solid var(--border);position:relative}
+.stat b{display:block;font-family:var(--font-disp);font-size:36px;font-weight:800;letter-spacing:-.02em;color:var(--text);line-height:1;margin-bottom:6px}
+.stat b em{font-style:italic;color:var(--gold);font-weight:400}
+.stat span{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute)}
+
+section{padding:72px 52px;max-width:1280px;margin:0 auto}
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;padding-bottom:24px;margin-bottom:48px;border-bottom:1px solid var(--border)}
+.sec-num{font-family:var(--font-disp);font-size:12px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase}
+h2{font-family:var(--font-disp);font-size:clamp(34px,4.8vw,60px);font-weight:700;letter-spacing:-.02em;line-height:1.05}
+h2 em{font-style:italic;font-weight:400;color:var(--gold)}
+
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.two-col h3{font-family:var(--font-disp);font-size:22px;font-weight:700;margin-bottom:16px;letter-spacing:-.01em;color:var(--gold)}
+.two-col p{font-size:15.5px;color:rgba(220,232,255,.78);margin-bottom:16px;line-height:1.75}
+.two-col p b{color:var(--text);font-weight:500}
+
+.pull{font-family:var(--font-disp);font-size:clamp(28px,3.6vw,48px);font-weight:400;font-style:italic;line-height:1.2;letter-spacing:-.015em;max-width:960px;margin:0 auto;text-align:center;padding:60px 0}
+.pull span{color:var(--gold)}
+.pull::before,.pull::after{content:'"';color:var(--gold)}
+.pull::before{margin-right:4px}.pull::after{margin-left:4px}
+
+.film{background:linear-gradient(135deg,rgba(22,38,72,.5),rgba(10,16,34,.3));backdrop-filter:blur(20px) saturate(140%);border:1px solid var(--border);border-radius:14px;padding:32px;display:grid;grid-template-columns:280px 1fr;gap:32px;align-items:center;transition:all .4s var(--ease);box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}
+.film:hover{border-color:var(--border2);transform:translateY(-3px);box-shadow:0 18px 45px rgba(0,0,30,.5),inset 0 1px 0 rgba(255,255,255,.08)}
+.film-visual{aspect-ratio:16/10;background:linear-gradient(135deg,#2a1520,#0a1830);border-radius:10px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.film-visual::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 30%,rgba(200,60,80,.25),transparent 60%),radial-gradient(circle at 70% 70%,rgba(200,169,110,.15),transparent 60%)}
+.film-visual .pl{font-family:var(--font-disp);font-size:14px;letter-spacing:.2em;color:var(--gold);z-index:1;position:relative}
+.film-body .tag{font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.film-body h4{font-family:var(--font-disp);font-size:26px;font-weight:700;letter-spacing:-.015em;margin-bottom:12px;line-height:1.15}
+.film-body p{font-size:14.5px;color:rgba(220,232,255,.72);line-height:1.6;margin-bottom:14px}
+.film-body .watch{font-size:11px;letter-spacing:.18em;color:var(--gold);text-transform:uppercase}
+
+.deliverables{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.del{padding:22px 26px;border:1px solid var(--border);border-radius:10px;background:linear-gradient(135deg,rgba(255,255,255,.03),rgba(255,255,255,.008));backdrop-filter:blur(14px)}
+.del b{display:block;font-family:var(--font-disp);font-size:13px;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
+.del p{font-size:14px;color:rgba(220,232,255,.78);line-height:1.6}
+
+.pagenav{position:static!important;top:auto!important;z-index:auto!important;background:transparent!important;backdrop-filter:none!important;border-bottom:none!important;padding:60px 52px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border);max-width:1280px;margin:60px auto 0;flex-wrap:wrap;gap:20px}
+.pagenav a{font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--mute);transition:color .25s}
+.pagenav a:hover{color:var(--gold)}
+.pagenav a.prim{color:var(--gold);border:1px solid var(--border2);padding:14px 28px;border-radius:100px;background:rgba(200,169,110,.04)}
+.pagenav a.prim:hover{background:var(--gold);color:#000}
+footer{padding:40px 52px;border-top:1px solid var(--border);text-align:center;color:var(--mute);font-size:12px;letter-spacing:.08em}
+footer a{color:var(--gold)}
+
+.hero-banner{max-width:1280px;margin:0 auto;padding:0 52px 40px}
+.hero-banner .frame{position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--border);aspect-ratio:21/9;background:#050914}
+.hero-banner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero-banner .frame::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(7,12,26,.7) 100%)}
+.brand-mark{max-width:1280px;margin:0 auto;padding:0 52px 10px;display:flex;justify-content:center}
+.brand-mark img{height:42px;width:auto;opacity:.9}
+
+/* FRAMEWORK DIAGRAMS */
+.fw-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+.fw-caption{font-family:var(--font-mono);font-size:11px;letter-spacing:.22em;color:var(--gold);text-transform:uppercase;margin-bottom:14px}
+.fw-title{font-family:var(--font-disp);font-size:26px;font-weight:700;letter-spacing:-.01em;margin-bottom:14px;line-height:1.15}
+.fw-title em{font-style:italic;font-weight:400;color:var(--gold)}
+.fw-body p{font-size:14.5px;color:rgba(220,232,255,.78);line-height:1.7;margin-bottom:10px}
+.fw-body p b{color:var(--text);font-weight:500}
+.fw-legend{display:flex;flex-direction:column;gap:10px;margin-top:18px}
+.fw-legend div{display:grid;grid-template-columns:14px 1fr;gap:12px;align-items:center;font-size:13px;color:rgba(220,232,255,.78)}
+.fw-legend i{width:14px;height:14px;border-radius:3px;display:inline-block}
+
+/* TAM/SAM/SOM concentric */
+.tss{position:relative;width:100%;aspect-ratio:1;max-width:460px;margin:0 auto}
+.tss svg{width:100%;height:100%;overflow:visible}
+.tss-ring{fill:none;stroke-width:1.2}
+.tss-ring.tam{stroke:rgba(130,170,255,.35)}
+.tss-ring.sam{stroke:rgba(200,169,110,.45)}
+.tss-ring.som{stroke:var(--gold)}
+.tss-fill.tam{fill:rgba(130,170,255,.06)}
+.tss-fill.sam{fill:rgba(200,169,110,.07)}
+.tss-fill.som{fill:rgba(200,169,110,.16)}
+.tss text{font-family:var(--font-mono);font-size:10px;fill:var(--gold);letter-spacing:.2em;text-transform:uppercase}
+.tss text.num{font-family:var(--font-disp);font-size:14px;fill:var(--text);font-weight:700;letter-spacing:-.01em;text-transform:none}
+
+/* 2x2 MATRIX */
+.matrix-wrap{position:relative;max-width:520px;margin:0 auto;width:100%;padding-left:24px;padding-bottom:30px}
+.matrix{position:relative;aspect-ratio:1;width:100%;border:1px solid var(--border);border-radius:10px;background:linear-gradient(135deg,rgba(22,38,72,.35),rgba(10,16,34,.2))}
+.matrix::before,.matrix::after{content:'';position:absolute;background:rgba(130,170,255,.22)}
+.matrix::before{left:50%;top:8%;bottom:8%;width:1px}
+.matrix::after{top:50%;left:8%;right:8%;height:1px}
+.m-yaxis,.m-xaxis{position:absolute;font-family:var(--font-mono);font-size:10px;letter-spacing:.22em;color:var(--mute);text-transform:uppercase}
+.m-yaxis span{position:absolute;left:0;transform:rotate(-90deg);transform-origin:0 0;white-space:nowrap}
+.m-yaxis span.hi{top:20px}
+.m-yaxis span.lo{top:calc(100% - 54px)}
+.m-yaxis{left:2px;top:0;bottom:30px;width:24px}
+.m-xaxis{left:24px;right:0;bottom:10px;display:flex;justify-content:space-between;padding:0 12px}
+.matrix .m-pt{position:absolute;display:flex;flex-direction:column;align-items:center;gap:5px;transform:translate(-50%,-50%);z-index:2}
+.matrix .m-pt .dot{width:13px;height:13px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(7,12,26,1),0 0 0 5px rgba(200,169,110,.45),0 0 18px rgba(200,169,110,.55)}
+.matrix .m-pt.ghost .dot{background:rgba(130,170,255,.5);box-shadow:0 0 0 4px rgba(7,12,26,1),0 0 0 5px rgba(130,170,255,.2)}
+.matrix .m-pt .lbl{font-family:var(--font-disp);font-size:11.5px;font-weight:700;color:var(--text);padding:2px 8px;background:rgba(7,12,26,.88);border:1px solid var(--border2);border-radius:100px;white-space:nowrap;letter-spacing:-.01em}
+.matrix .m-pt.ghost .lbl{color:rgba(220,232,255,.6);border-color:var(--border)}
+
+/* BARS */
+.bars{display:flex;flex-direction:column;gap:14px}
+.bar-row{display:grid;grid-template-columns:120px 1fr 70px;gap:14px;align-items:center;font-size:12.5px}
+.bar-row .label{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.18em;color:var(--mute);text-transform:uppercase}
+.bar-row .track{height:10px;background:rgba(130,170,255,.08);border-radius:100px;position:relative;overflow:hidden;border:1px solid var(--border)}
+.bar-row .fill{height:100%;border-radius:100px;background:linear-gradient(90deg,var(--gold),var(--gold2));box-shadow:0 0 12px rgba(200,169,110,.4)}
+.bar-row.ghost .fill{background:linear-gradient(90deg,rgba(130,170,255,.35),rgba(130,170,255,.2));box-shadow:none}
+.bar-row .val{font-family:var(--font-mono);font-size:11px;color:var(--gold);text-align:right;letter-spacing:.05em}
+.bar-row.ghost .val{color:var(--mute)}
+
+/* POP / POD */
+.pop-pod{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.pop-pod .col{padding:26px 28px;border:1px solid var(--border);border-radius:12px;background:linear-gradient(135deg,rgba(22,38,72,.35),rgba(10,16,34,.25))}
+.pop-pod .col.pod{border-color:var(--border2);background:linear-gradient(135deg,rgba(200,169,110,.1),rgba(10,16,34,.3))}
+.pop-pod h5{font-family:var(--font-disp);font-size:13px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;margin-bottom:14px}
+.pop-pod ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.pop-pod li{font-size:13.5px;color:rgba(220,232,255,.8);padding-left:16px;position:relative;line-height:1.6}
+.pop-pod li::before{content:'';position:absolute;left:0;top:9px;width:6px;height:6px;border-radius:50%;background:var(--gold);opacity:.5}
+.pop-pod .col.pod li::before{opacity:.9;background:var(--gold)}
+
+/* NEEDS LADDER */
+.ladder{display:grid;grid-template-columns:1fr;gap:0;max-width:460px;margin:0 auto;position:relative}
+.ladder .rung{padding:16px 22px;border:1px solid var(--border);border-radius:12px;background:linear-gradient(135deg,rgba(22,38,72,.4),rgba(10,16,34,.2));backdrop-filter:blur(12px);position:relative;margin-bottom:10px;transition:all .3s var(--ease)}
+.ladder .rung:hover{border-color:var(--border2);transform:translateX(4px)}
+.ladder .rung:nth-child(1){margin-left:0;width:60%}
+.ladder .rung:nth-child(2){margin-left:10%;width:70%}
+.ladder .rung:nth-child(3){margin-left:20%;width:80%}
+.ladder .rung:nth-child(4){margin-left:30%;width:80%;border-color:var(--border2);background:linear-gradient(135deg,rgba(200,169,110,.15),rgba(10,16,34,.3))}
+.ladder .rung .lvl{font-family:var(--font-mono);font-size:10px;letter-spacing:.24em;color:var(--gold);text-transform:uppercase;margin-bottom:4px}
+.ladder .rung .txt{font-family:var(--font-disp);font-size:15px;font-weight:700;letter-spacing:-.01em}
+.ladder .rung .txt em{font-style:italic;font-weight:400;color:var(--gold)}
+.ladder .connector{position:absolute;left:8px;top:0;bottom:0;width:0;border-left:1px dashed rgba(200,169,110,.3);z-index:-1}
+
+/* FUNNEL (Decision flow) */
+.funnel{display:flex;flex-direction:column;gap:6px;align-items:center;max-width:440px;margin:0 auto}
+.funnel .step{width:100%;text-align:center;padding:12px 18px;border:1px solid var(--border);background:linear-gradient(135deg,rgba(22,38,72,.35),rgba(10,16,34,.2));border-radius:10px;font-family:var(--font-disp);font-size:13.5px;font-weight:600;letter-spacing:-.005em;position:relative}
+.funnel .step em{font-style:italic;font-weight:400;color:var(--gold);display:block;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:3px}
+.funnel .step:nth-child(1){max-width:95%}
+.funnel .step:nth-child(2){max-width:85%}
+.funnel .step:nth-child(3){max-width:75%}
+.funnel .step:nth-child(4){max-width:65%;border-color:var(--border2);background:linear-gradient(135deg,rgba(200,169,110,.14),rgba(10,16,34,.3))}
+.funnel .arr{font-size:11px;color:var(--gold);line-height:1}
+
+/* QUANT STRIP */
+.qstrip{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:linear-gradient(135deg,rgba(22,38,72,.3),rgba(10,16,34,.15));margin-top:28px}
+.qstrip .q{padding:24px 22px;border-right:1px solid var(--border);text-align:left}
+.qstrip .q:last-child{border-right:0}
+.qstrip .q .k{font-family:var(--font-disp);font-size:30px;font-weight:800;letter-spacing:-.02em;line-height:1;color:var(--text);margin-bottom:6px}
+.qstrip .q .k em{font-style:italic;font-weight:400;color:var(--gold)}
+.qstrip .q .d{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.18em;color:var(--mute);text-transform:uppercase;margin-bottom:4px}
+.qstrip .q .sub{font-size:12px;color:rgba(220,232,255,.65);line-height:1.45}
+
+@media(max-width:900px){
+  .fw-grid{grid-template-columns:1fr;gap:28px}
+  .pop-pod{grid-template-columns:1fr}
+  .qstrip{grid-template-columns:1fr 1fr}
+  .qstrip .q:nth-child(2){border-right:0}
+  .qstrip .q:nth-child(1),.qstrip .q:nth-child(2){border-bottom:1px solid var(--border)}
+  .ladder .rung{width:100%!important;margin-left:0!important}
+  .matrix{padding:44px 44px 30px 30px}
+  .bar-row{grid-template-columns:90px 1fr 60px;gap:10px}
+}
+@media(max-width:900px){
+  nav{padding:16px 22px}.nav-links{display:none}
+  .back{left:22px;top:72px}
+  .hero{padding:140px 24px 60px}section{padding:70px 24px}
+  .two-col{grid-template-columns:1fr;gap:32px}
+  .film{grid-template-columns:1fr;gap:20px;padding:24px}
+  .deliverables{grid-template-columns:1fr}
+  .stats{gap:24px}
+  .hero-banner{padding:0 22px 30px}
+}
+@media(max-width:540px){
+  nav{padding:14px 18px}
+  .back{left:18px;top:64px;font-size:12px}
+  .hero{padding:120px 18px 44px}
+  section{padding:52px 18px}
+  h1{font-size:clamp(36px,10vw,56px)!important}
+  h2{font-size:clamp(24px,6.4vw,34px)!important}
+  .eyebrow{font-size:11px}
+  .stats{flex-wrap:wrap;gap:18px}
+  .stat-num{font-size:32px}
+}
+
+</style>
+</head>
+
+
+<nav>
+  <a class="nav-logo" href="index.html">Simran<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="projects.html" class="active">Projects</a></li>
+    <li><a href="cv.html">CV</a></li>
+    <li><a href="author-ai.html">Author.AI</a></li>
+    <li><a href="index.html#contact">Connect</a></li>
+  </ul>
+  <a href="https://chatgpt.com/g/g-69517b4ef32481918f687dfdaffbfc55-simran-raj-bhyana-for-hire" target="_blank" class="nav-cta">Simran.GPT ↗</a>
+</nav>
+
+<a href="projects.html#ch-02" class="back">← Messaging chapter</a>
+
+<header class="hero">
+  <div class="meta-row">
+    <span>Case 04</span><span class="dot">·</span>
+    <span>Messaging</span><span class="dot">·</span>
+    <span>Marks &amp; Spencer India</span><span class="dot">·</span>
+    <span>BraFit</span><span class="dot">·</span>
+    <span>Sociowash</span>
+  </div>
+  <h1>Physical discomfortis obvious.Unless it's the bra.</h1>
+  <p class="hero-sub">70% of women wear the wrong bra size, and most don't know it. M&amp;S India had a free, in-store BraFit service answering exactly that problem. The film didn't sell the service. It gave women permission to name the discomfort out loud.</p>
+  <div class="stats">
+    <div class="stat">2.2M+<span>YouTube views</span></div>
+    <div class="stat">70%<span>Women wearing wrong size</span></div>
+    <div class="stat">1<span>Film · multi-cut</span></div>
+    <div class="stat">Free<span>In-store BraFit service</span></div>
+  </div>
+</header>
+
+<div class="brand-mark"><img src="img/ms-logo.jpeg" alt="Marks &amp; Spencer logo"/></div>
+
+<div class="hero-banner">
+  <a href="https://youtu.be/3WNZbjHcZf4?si=olG9XhNOZhkHYPNt" target="_blank"><div class="frame"><img src="img/ms-brafit-thumb.png" alt="M&amp;S BraFit film, key frame"/></div></a>
+</div>
+
+<section>
+  <div class="sec-head">
+    <div><div class="sec-num">01 · The brief</div><h2>A service nobody was asking for</h2></div>
+  </div>
+  <div class="two-col">
+    <div>
+      <h3>The problem</h3>
+      <p>M&amp;S had offered a free BraFit service in India for years, a trained specialist, a private room, no purchase pressure. The data was clear: most women were in the wrong size. The awareness was not. Category advertising defaulted to aspirational comfort claims; nobody named the actual pain.</p>
+      <p>The ask, build a film that pulls the conversation out of the whisper and into the open, without turning the brand into the lecture.</p>
+    </div>
+    <div>
+      <h3>The insight</h3>
+      <p>Women adjust hundreds of times a day, straps, underwire, back band, and don't register it as discomfort, because it's constant. We named that invisibility. A sprained ankle is obvious. A badly fitted bra is background noise until somebody points to it.</p>
+      <p>The line, "Physical discomfort is obvious, unless it's the bra", did the heavy lifting. The service became the payoff, not the protagonist.</p>
+    </div>
+  </div>
+</section>
+
+<div class="pull">A sprained ankle is obvious. A badly fitted bra is <span>background noise</span>.</div>
+
+<section>
+  <div class="sec-head">
+    <div><div class="sec-num">02 · Deliverables</div><h2>What shipped</h2></div>
+  </div>
+  <div class="deliverables">
+    <div class="del">Messaging pillar<p>Moved the brand from "comfort &amp; quality" platitudes to a specific, named discomfort. Discomfort as a shared secret, unlocked.</p></div>
+    <div class="del">Hero line<p>Physical discomfort is obvious. Unless it's the bra. — became the spine of the campaign. Film, social, in-store signage.</p></div>
+    <div class="del">Hero film<p>One film, multiple cuts. 2.2M+ organic views. The film that made women book the service, not just acknowledge it.</p></div>
+    <div class="del">Service-led CTA architecture<p>BraFit booking as the payoff, not the pitch. Positioned as permission, not pressure to buy.</p></div>
+  </div>
+</section>
+
+<nav class="pagenav">
+  <a href="wdblack.html">← WD_BLACK</a>
+  <a href="freedom.html" class="prim">Next · Freedom Oil →</a>
+</nav>
+
+<footer>
+  © Simran Raj Bhyana · <a href="index.html">Home</a> · <a href="projects.html">Projects</a> · <a href="cv.html">CV</a>
+</footer>
+
+
+</html>

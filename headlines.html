@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="messaging">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+<title>Headlines, Messaging · Simran Raj Bhyana</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Syne:wght@400;700;800&display=swap" rel="stylesheet"/>
+<style>
+:root{--gold:#c8a96e;--gold2:#e8c87a;
+  --bg:#070c1a;--bg2:#0a1022;--surf:#0e1830;
+  --text:#dce8ff;--mute:rgba(220,232,255,.52);
+  --border:rgba(130,170,255,.12);--border2:rgba(200,169,110,.22);
+  --ease:cubic-bezier(.16,1,.3,1);
+  --font-sans:'Inter',sans-serif;--font-disp:'Syne',sans-serif}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font-sans);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--gold);color:#000}
+a{color:inherit;text-decoration:none}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:20px 52px;background:rgba(7,12,26,.72);backdrop-filter:blur(20px) saturate(140%);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:var(--font-disp);font-size:17px;font-weight:800;letter-spacing:-.02em}
+.nav-logo span{color:var(--gold)}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{font-size:11.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(220,232,255,.62);transition:color .25s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--gold);transition:width .3s var(--ease)}
+.nav-links a:hover,.nav-links a.active{color:var(--text)}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.nav-cta{font-size:12px;padding:9px 22px;border:1px solid var(--border2);border-radius:100px;color:var(--gold);background:rgba(200,169,110,.04);backdrop-filter:blur(12px)}
+.nav-cta:hover{background:var(--gold);color:#000}
+
+.back{position:fixed;top:90px;left:52px;z-index:50;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);transition:color .25s}
+.back:hover{color:var(--gold)}
+
+.hero{min-height:70vh;display:flex;flex-direction:column;justify-content:flex-end;padding:180px 52px 60px;max-width:1280px;margin:0 auto;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 60% 55% at 80% 20%,rgba(30,90,200,.28),transparent 70%),radial-gradient(ellipse 30% 40% at 5% 85%,rgba(200,169,110,.08),transparent 60%)}
+.meta-row{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:28px;font-size:10.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--mute);position:relative}
+.meta-row .dot{color:var(--gold)}
+.meta-row b{color:var(--gold);font-weight:500}
+h1{font-family:var(--font-disp);font-size:clamp(44px,6.6vw,84px);font-weight:800;line-height:.92;letter-spacing:-.035em;margin-bottom:32px;position:relative}
+h1 em{font-style:italic;font-weight:400;color:var(--gold)}
+.hero-sub{font-size:19px;color:var(--mute);max-width:720px;line-height:1.65;margin-bottom:20px;position:relative}
+
+section{padding:72px 52px;max-width:1280px;margin:0 auto}
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;padding-bottom:24px;margin-bottom:48px;border-bottom:1px solid var(--border)}
+.sec-num{font-family:var(--font-disp);font-size:12px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase}
+h2{font-family:var(--font-disp);font-size:clamp(34px,4.8vw,60px);font-weight:700;letter-spacing:-.02em;line-height:1.05}
+h2 em{font-style:italic;font-weight:400;color:var(--gold)}
+
+.lines{display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
+.line{position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--border);background:linear-gradient(180deg,#0a1124,#050912);transition:all .45s var(--ease);box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 18px 45px rgba(0,0,30,.35);display:flex;flex-direction:column}
+.line .art{position:relative;width:100%;background:#050912;display:flex;align-items:center;justify-content:center;overflow:hidden;aspect-ratio:1/1}
+.line .art img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;display:block;transition:transform .9s var(--ease),filter .5s}
+.line:hover{border-color:var(--border2);transform:translateY(-4px);box-shadow:0 30px 70px rgba(0,0,40,.6),inset 0 1px 0 rgba(255,255,255,.08)}
+.line:hover .art img{transform:scale(1.03);filter:brightness(1.06)}
+.line .num{position:absolute;top:16px;left:16px;z-index:3;font-family:var(--font-disp);font-size:11px;letter-spacing:.24em;color:var(--gold);font-weight:700;text-transform:uppercase;padding:6px 13px;background:rgba(7,12,26,.7);backdrop-filter:blur(12px);border:1px solid var(--border2);border-radius:100px}
+.line .meta{padding:22px 26px 24px;display:flex;flex-direction:column;gap:8px;border-top:1px solid var(--border)}
+.line .meta .brand{font-family:var(--font-disp);font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.line .meta .lead{font-family:var(--font-disp);font-size:17px;font-weight:700;line-height:1.3;letter-spacing:-.01em;color:var(--text)}
+.line .meta .lead em{font-style:italic;font-weight:400;color:var(--gold)}
+.line .meta .ctx{font-size:13px;color:var(--mute);line-height:1.55}
+
+.pull{font-family:var(--font-disp);font-size:clamp(28px,3.6vw,48px);font-weight:400;font-style:italic;line-height:1.2;letter-spacing:-.015em;max-width:960px;margin:0 auto;text-align:center;padding:80px 0}
+.pull span{color:var(--gold)}
+.pull::before,.pull::after{content:'"';color:var(--gold)}
+.pull::before{margin-right:4px}.pull::after{margin-left:4px}
+
+.note{max-width:680px;margin:0 auto;text-align:center;font-size:14px;color:var(--mute);padding:40px 24px;line-height:1.7}
+.note b{color:var(--gold);font-weight:500}
+
+.pagenav{position:static!important;top:auto!important;z-index:auto!important;background:transparent!important;backdrop-filter:none!important;border-bottom:none!important;padding:60px 52px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border);max-width:1280px;margin:60px auto 0;flex-wrap:wrap;gap:20px}
+.pagenav a{font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--mute);transition:color .25s}
+.pagenav a:hover{color:var(--gold)}
+.pagenav a.prim{color:var(--gold);border:1px solid var(--border2);padding:14px 28px;border-radius:100px;background:rgba(200,169,110,.04)}
+.pagenav a.prim:hover{background:var(--gold);color:#000}
+footer{padding:40px 52px;border-top:1px solid var(--border);text-align:center;color:var(--mute);font-size:12px;letter-spacing:.08em}
+footer a{color:var(--gold)}
+
+@media(max-width:900px){
+  nav{padding:16px 22px}.nav-links{display:none}
+  .back{left:22px;top:72px}
+  .hero{padding:140px 24px 60px}section{padding:60px 24px}
+  .lines{grid-template-columns:1fr;gap:22px}
+  .line{padding:0}
+  .line .meta{padding:18px 20px 20px}
+  .line .meta .lead{font-size:16px}
+  .pull{padding:56px 8px;font-size:clamp(22px,5.2vw,32px)}
+}
+@media(max-width:540px){
+  .line .art{aspect-ratio:1/1;max-height:70vh}
+  nav{padding:14px 18px}
+  .back{left:18px;top:64px;font-size:12px}
+  .hero{padding:120px 18px 44px}
+  section{padding:44px 16px}
+  h1{font-size:clamp(34px,9vw,52px)!important}
+  h2{font-size:clamp(22px,6vw,30px)!important}
+  .lines{gap:18px}
+  .line .num{top:10px;left:10px;font-size:10px;padding:4px 9px}
+  .line .meta{padding:14px 16px 16px;gap:6px}
+  .line .meta .brand{font-size:10px;letter-spacing:.22em}
+  .line .meta .lead{font-size:15px}
+  .line .meta .ctx{font-size:12.5px}
+  .pull{padding:40px 6px;font-size:clamp(18px,5vw,26px)}
+  .pagenav{padding:40px 18px}
+}
+
+</style>
+</head>
+
+
+<nav>
+  <a class="nav-logo" href="index.html">Simran<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="projects.html" class="active">Projects</a></li>
+    <li><a href="cv.html">CV</a></li>
+    <li><a href="author-ai.html">Author.AI</a></li>
+    <li><a href="index.html#contact">Connect</a></li>
+  </ul>
+  <a href="https://chatgpt.com/g/g-69517b4ef32481918f687dfdaffbfc55-simran-raj-bhyana-for-hire" target="_blank" class="nav-cta">Simran.GPT ↗</a>
+</nav>
+
+<a href="projects.html#ch-02" class="back">← Messaging chapter</a>
+
+<header class="hero">
+  <div class="meta-row">
+    <span>Case 07</span><span class="dot">·</span>
+    <span>Messaging</span><span class="dot">·</span>
+    <span>Headlines</span><span class="dot">·</span>
+    <span>Selected lines</span>
+  </div>
+  <h1>The line is the strategy,compressed.</h1>
+  <p class="hero-sub">A brand spends months finding its angle. The line is the thirty characters that carry all of that weight in public. A selection of headlines I've written that stood up to the pressure.</p>
+</header>
+
+<section>
+  <div class="sec-head">
+    <div><div class="sec-num">01 · Selected lines</div><h2>Headlines that held</h2></div>
+  </div>
+  <div class="lines">
+    <a class="line" href="img/line-01.png" target="_blank">
+      <div class="art"><img src="img/line-01.png" alt="Luxor Schneider pens, writing length campaign" loading="lazy"/></div>
+      <div class="num">01</div>
+      <div class="meta">
+        <span class="brand">Luxor · Schneider</span>
+        <span class="lead">One hybrid roller can write 2500m. That's almost three Harry Potter books.</span>
+        <span class="ctx">Product truth as cultural yardstick, writing length becomes a reading promise.</span>
+      </div>
+    </a>
+    <a class="line" href="img/line-02.png" target="_blank">
+      <div class="art"><img src="img/line-02.png" alt="Swiggy Instamart and pizza promo" loading="lazy"/></div>
+      <div class="num">02</div>
+      <div class="meta">
+        <span class="brand">Swiggy · Instamart</span>
+        <span class="lead">Wait-free free delivery. / How far can you push the pull?</span>
+        <span class="ctx">Two Instamart executions, one grammar. Get the joke in under three seconds.</span>
+      </div>
+    </a>
+    <a class="line" href="img/line-03.png" target="_blank">
+      <div class="art"><img src="img/line-03.png" alt="Swiggy Dineout minimalism launch" loading="lazy"/></div>
+      <div class="num">03</div>
+      <div class="meta">
+        <span class="brand">Swiggy · Dineout</span>
+        <span class="lead">Minimalism, what? Now, Swiggy even when you dine out.</span>
+        <span class="ctx">Launch-moment copy for Dineout, stacks of burger meet 50% off dining bills.</span>
+      </div>
+    </a>
+    <a class="line" href="img/line-04.png" target="_blank">
+      <div class="art"><img src="img/line-04.png" alt="Luxor HerMightyPen campaign, Women's Day" loading="lazy"/></div>
+      <div class="num">04</div>
+      <div class="meta">
+        <span class="brand">Luxor · #HerMightyPen</span>
+        <span class="lead">Her Pen has the might of miracles. The nation's future is what she shall write.</span>
+        <span class="ctx">Women's Day brand arc. Three-film series, one promise: the pen is the plan.</span>
+      </div>
+    </a>
+    <a class="line" href="img/line-05.png" target="_blank">
+      <div class="art"><img src="img/line-05.png" alt="PetStar pet food, Doggos in your favourite movies" loading="lazy"/></div>
+      <div class="num">05</div>
+      <div class="meta">
+        <span class="brand">PetStar · Originals</span>
+        <span class="lead">Doggos in your favourite movies. This little part of my life, is called Joy.</span>
+        <span class="ctx">Film-reference copy turns a pet-food ad into a love letter. 79% bioavailable protein as the punchline, not the opener.</span>
+      </div>
+    </a>
+    <a class="line" href="img/line-06.png" target="_blank">
+      <div class="art"><img src="img/line-06.png" alt="Swiggy Dineout, Valentine's topical" loading="lazy"/></div>
+      <div class="num">06</div>
+      <div class="meta">
+        <span class="brand">Swiggy · Dineout · Valentine's</span>
+        <span class="lead">Romeooooo, take me somewhere we don't pay a lot.</span>
+        <span class="ctx">Valentine's topical. Up to 50% off top restaurants, wrapped in a line you'd actually text.</span>
+      </div>
+    </a>
+    <a class="line" href="img/line-07.png" target="_blank">
+      <div class="art"><img src="img/line-07.png" alt="iimpact NGO, Chandrayaan topical for girl education" loading="lazy"/></div>
+      <div class="num">07</div>
+      <div class="meta">
+        <span class="brand">iimpact · girl education NGO</span>
+        <span class="lead">Maybe, the moon is just a classroom away. #IssBaarJeetHumari</span>
+        <span class="ctx">Chandrayaan landing topical. Mission metaphor flipped into an argument for educating every girl in India.</span>
+      </div>
+    </a>
+    <a class="line" href="img/line-08.png" target="_blank">
+      <div class="art"><img src="img/line-08.png" alt="Sharp air purifier and deodorizer" loading="lazy"/></div>
+      <div class="num">08</div>
+      <div class="meta">
+        <span class="brand">Sharp · #LiveSharp</span>
+        <span class="lead">The guardian angel of your sleep. / Low on odour, with anti-bacterial deodorizer.</span>
+        <span class="ctx">Air-purifier and deodorizer launches. Category normally talks specs, we gave it a bedtime story.</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<div class="pull">A good line isn't clever. It's <span>unavoidable</span>.</div>
+
+<div class="note">Headlines from briefs where I owned positioning or lead-copy, across the last six years. Some shipped as hero lines, some as campaign spines, some as the single sentence that convinced the room. More available on request.</div>
+
+<nav class="pagenav">
+  <a href="freedom.html">← Freedom Oil</a>
+  <a href="spry.html" class="prim">Next · Spry →</a>
+</nav>
+
+<footer>
+  © Simran Raj Bhyana · <a href="index.html">Home</a> · <a href="projects.html">Projects</a> · <a href="cv.html">CV</a>
+</footer>
+
+
+</html>

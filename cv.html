@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+<title>CV, Simran Raj Bhyana</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Syne:wght@400;700;800&display=swap" rel="stylesheet"/>
+<style>
+:root{--gold:#c8a96e;--gold2:#e8c87a;
+  --bg:#070b13;--bg2:#0b1120;--surf:#101828;--surf2:#152035;
+  --text:#edf0f7;--mute:rgba(237,240,247,.52);
+  --border:rgba(255,255,255,.08);--border2:rgba(200,169,110,.22);
+  --ease:cubic-bezier(.16,1,.3,1);
+  --font-sans:'Inter',sans-serif;--font-disp:'Syne',sans-serif;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{background:var(--bg);color:var(--text);font-family:var(--font-sans);
+  font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--gold);color:#000}
+a{color:inherit;text-decoration:none}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;
+  align-items:center;justify-content:space-between;padding:20px 52px;
+  background:rgba(7,11,19,.72);backdrop-filter:blur(20px) saturate(140%);
+  border-bottom:1px solid var(--border)}
+.nav-logo{font-family:var(--font-disp);font-size:17px;font-weight:800;letter-spacing:-.02em}
+.nav-logo span{color:var(--gold)}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{font-size:11.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(237,240,247,.62);transition:color .25s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;
+  background:var(--gold);transition:width .3s var(--ease)}
+.nav-links a:hover,.nav-links a.active{color:var(--text)}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.nav-cta{font-size:12px;padding:9px 22px;border:1px solid var(--border2);border-radius:100px;
+  color:var(--gold);background:rgba(200,169,110,.04);backdrop-filter:blur(12px);
+  transition:all .3s var(--ease)}
+.nav-cta:hover{background:var(--gold);color:#000}
+
+/* PAGE-LEVEL SIDE INDEX */
+.side-index{position:fixed;top:50%;right:24px;transform:translateY(-50%);z-index:60;
+  display:flex;flex-direction:column;gap:14px}
+.side-index a{font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--mute);writing-mode:vertical-rl;transition:color .25s;
+  padding:6px 2px;border-right:1px solid var(--border)}
+.side-index a:hover,.side-index a.active{color:var(--gold);border-color:var(--gold)}
+@media(max-width:1100px){.side-index{display:none}}
+
+/* HERO */
+.hero{min-height:92vh;display:flex;flex-direction:column;justify-content:flex-end;
+  padding:180px 52px 80px;position:relative;overflow:hidden;max-width:1320px;margin:0 auto}
+.hero::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(ellipse 55% 60% at 80% 15%,rgba(25,70,160,.45),transparent 70%),
+    radial-gradient(ellipse 30% 40% at 5% 85%,rgba(200,169,110,.06),transparent 60%)}
+.hero-portrait{position:absolute;top:0;right:-5%;bottom:0;width:45%;max-width:700px;pointer-events:none;z-index:0;overflow:hidden;
+  mask-image:linear-gradient(to left,#000 60%,transparent 100%),linear-gradient(to bottom,transparent 5%,#000 15%,#000 90%,transparent 100%);
+  -webkit-mask-image:linear-gradient(to left,#000 60%,transparent 100%),linear-gradient(to bottom,transparent 5%,#000 15%,#000 90%,transparent 100%);
+  mask-composite:intersect;-webkit-mask-composite:source-in}
+.hero-portrait img{width:100%;height:100%;object-fit:cover;object-position:center top;
+  filter:grayscale(100%) contrast(1.15) brightness(.65);opacity:.5;will-change:transform}
+.hero-portrait::before{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(135deg,rgba(15,50,140,.6) 0%,rgba(5,20,70,.35) 50%,rgba(200,169,110,.1) 100%);mix-blend-mode:color}
+.hero > *:not(.hero-portrait){position:relative;z-index:1}
+.eyebrow{font-size:11px;letter-spacing:.32em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:24px;position:relative}
+.eyebrow::before{content:'';display:inline-block;width:36px;height:1px;
+  background:var(--gold);vertical-align:middle;margin-right:14px}
+h1{font-family:var(--font-disp);font-size:clamp(46px,7vw,92px);font-weight:800;
+  line-height:.92;letter-spacing:-.035em;margin-bottom:32px;position:relative}
+h1 em{font-style:italic;font-weight:400;color:var(--gold)}
+.hero-sub{font-size:19px;color:var(--mute);max-width:680px;line-height:1.65;position:relative;
+  margin-bottom:40px}
+.hero-meta{display:flex;flex-wrap:wrap;gap:36px;padding-top:32px;border-top:1px solid var(--border);
+  position:relative;font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--mute)}
+.hero-meta b{display:block;font-family:var(--font-disp);font-weight:700;font-size:22px;
+  color:var(--text);letter-spacing:-.01em;text-transform:none;margin-bottom:4px}
+.hero-meta b em{font-style:italic;color:var(--gold);font-weight:400}
+
+/* SECTION */
+section{padding:78px 52px;max-width:1320px;margin:0 auto;position:relative}
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;
+  padding-bottom:24px;margin-bottom:60px;border-bottom:1px solid var(--border)}
+.sec-num{font-family:var(--font-disp);font-size:12px;letter-spacing:.3em;color:var(--gold);
+  text-transform:uppercase}
+h2{font-family:var(--font-disp);font-size:clamp(38px,5.5vw,72px);font-weight:700;
+  letter-spacing:-.02em;line-height:1;margin-bottom:14px}
+h2 em{font-style:italic;font-weight:400;color:var(--gold)}
+.sec-kicker{font-size:16px;color:var(--mute);max-width:640px}
+
+/* PHILOSOPHY */
+.philosophy{display:grid;grid-template-columns:1.1fr 1fr;gap:72px;align-items:start}
+.pull{font-family:var(--font-disp);font-size:clamp(30px,3.8vw,52px);font-weight:400;
+  font-style:italic;line-height:1.15;letter-spacing:-.015em}
+.pull span{color:var(--gold)}
+.pull::before{content:'"';color:var(--gold);font-size:1.2em;margin-right:6px}
+.philosophy p{font-size:15.5px;color:var(--mute);margin-bottom:18px;line-height:1.75}
+.philosophy p b{color:var(--text);font-weight:500}
+.split-two{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:32px}
+.split-card{background:linear-gradient(135deg,rgba(255,255,255,.04),rgba(255,255,255,.01));
+  backdrop-filter:blur(18px);border:1px solid var(--border);border-radius:10px;padding:26px 28px}
+.split-card h4{font-family:var(--font-disp);font-size:13px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.split-card li{font-size:13.5px;color:var(--mute);padding:6px 0;list-style:none;position:relative;
+  padding-left:14px}
+.split-card li::before{content:'·';color:var(--gold);position:absolute;left:0;top:6px;font-weight:700}
+
+/* TIMELINE — stair step */
+.timeline{position:relative;counter-reset:step;padding-left:48px}
+.tl-item{position:relative;padding-bottom:14px;list-style:none;border-bottom:1px solid var(--border);counter-increment:step;margin-left:var(--step-indent,0);transition:margin-left .45s var(--ease)}
+.tl-item:nth-of-type(1){--step-indent:0}
+.tl-item:nth-of-type(2){--step-indent:32px}
+.tl-item:nth-of-type(3){--step-indent:64px}
+.tl-item:nth-of-type(4){--step-indent:96px}
+.tl-item:nth-of-type(5){--step-indent:128px}
+.tl-item:nth-of-type(6){--step-indent:96px}
+.tl-item:nth-of-type(7){--step-indent:64px}
+.tl-item:nth-of-type(8){--step-indent:32px}
+.tl-item::before{content:'';position:absolute;left:calc(var(--step-indent,0) * -1 - 20px);top:30px;width:calc(var(--step-indent,0px) + 14px);height:1px;background:linear-gradient(90deg,transparent 0%,rgba(200,169,110,.35) 40%,rgba(200,169,110,.5) 100%);opacity:.7;pointer-events:none}
+.tl-item::after{content:counter(step,decimal-leading-zero);position:absolute;left:calc(var(--step-indent,0) * -1 - 44px);top:24px;font-family:var(--font-disp);font-size:10px;letter-spacing:.2em;color:var(--gold);opacity:.6}
+.tl-item:last-child{border-bottom:0}
+.tl-item::-webkit-details-marker,.tl-item>summary::-webkit-details-marker{display:none}
+.tl-item>summary{list-style:none;cursor:pointer;padding:20px 56px 20px 0;border-radius:10px;position:relative;transition:background .25s}
+.tl-item>summary:hover{background:rgba(200,169,110,.03)}
+.tl-item>summary .chev{position:absolute;right:8px;top:50%;width:32px;height:32px;border-radius:50%;border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;transform:translateY(-50%);transition:all .4s var(--ease);color:var(--gold);background:rgba(200,169,110,.04)}
+.tl-item[open]>summary .chev{transform:translateY(-50%) rotate(180deg);background:var(--gold);color:#000}
+.tl-item>summary .chev svg{width:12px;height:12px}
+.tl-item .tl-icon{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;border:1px solid var(--border2);background:rgba(200,169,110,.06);color:var(--gold);margin-right:14px;vertical-align:middle}
+.tl-item .tl-icon svg{width:16px;height:16px}
+.tl-date{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);
+  margin-bottom:8px}
+.tl-role{font-family:var(--font-disp);font-size:24px;font-weight:700;letter-spacing:-.01em;
+  margin-bottom:4px;line-height:1.2;display:flex;align-items:center;flex-wrap:wrap}
+.tl-role em{font-style:italic;font-weight:400;color:var(--gold)}
+.tl-org{font-size:13.5px;color:var(--mute);margin-bottom:0}
+.tl-org b{color:var(--text);font-weight:500}
+.tl-item[open] .tl-body{animation:tl-open .5s var(--ease)}
+@keyframes tl-open{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+.tl-body{background:linear-gradient(135deg,rgba(22,38,72,.4),rgba(10,16,34,.3));
+  backdrop-filter:blur(18px);border:1px solid var(--border);border-radius:10px;
+  padding:28px 32px;font-size:14.5px;line-height:1.7;color:rgba(237,240,247,.78);margin-top:18px}
+.tl-body p+p{margin-top:14px}
+.tl-body b{color:var(--text);font-weight:500}
+.tl-body em{color:var(--gold);font-style:normal;font-weight:500}
+.tl-metrics{display:flex;flex-wrap:wrap;gap:22px;margin-top:20px;padding-top:18px;
+  border-top:1px solid var(--border);font-size:11px;letter-spacing:.08em;color:var(--mute)}
+.tl-metrics b{display:block;font-family:var(--font-disp);font-size:17px;color:var(--gold);
+  font-weight:700;margin-bottom:2px;letter-spacing:-.01em}
+.tl-media{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}
+.tl-media .cell{position:relative;border-radius:10px;overflow:hidden;border:1px solid var(--border);background:#050914;aspect-ratio:4/3}
+.tl-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}
+.tl-media .cell:hover img{transform:scale(1.05)}
+.tl-media .cap{position:absolute;bottom:10px;left:12px;right:12px;z-index:2;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#fff;padding:5px 10px;background:rgba(7,12,26,.65);backdrop-filter:blur(10px);border-radius:100px;border:1px solid var(--border2);width:max-content}
+.tl-media .cell.logo{display:flex;align-items:center;justify-content:center;background:#fff}
+.tl-media .cell.logo img{position:static;width:auto;height:50%;object-fit:contain;max-width:75%}
+
+/* STRENGTHS */
+.strengths{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.str{background:linear-gradient(135deg,rgba(255,255,255,.04),rgba(255,255,255,.01));
+  backdrop-filter:blur(18px);border:1px solid var(--border);border-radius:12px;padding:30px 28px;
+  transition:all .35s var(--ease)}
+.str:hover{border-color:var(--border2);transform:translateY(-3px);
+  box-shadow:0 16px 40px rgba(0,0,30,.5)}
+.str-num{font-family:var(--font-disp);font-size:42px;font-weight:800;color:transparent;
+  -webkit-text-stroke:1px var(--gold);letter-spacing:-.03em;line-height:1;margin-bottom:14px}
+.str h4{font-family:var(--font-disp);font-size:20px;font-weight:700;letter-spacing:-.01em;
+  margin-bottom:10px}
+.str h4 em{font-style:italic;font-weight:400;color:var(--gold)}
+.str p{font-size:13.5px;color:var(--mute);line-height:1.6;margin-bottom:14px}
+.str-ev{font-size:11.5px;color:rgba(237,240,247,.6);padding-top:14px;
+  border-top:1px solid var(--border);line-height:1.55}
+.str-ev b{color:var(--gold);font-weight:500}
+
+/* TOOLS / SKILLS */
+.skills{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:24px}
+.skill-col h4{font-family:var(--font-disp);font-size:13px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+.skill-col ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px}
+.skill-col li{font-size:12.5px;padding:7px 14px;border:1px solid var(--border);
+  border-radius:100px;color:rgba(237,240,247,.78);
+  background:linear-gradient(135deg,rgba(255,255,255,.03),rgba(255,255,255,.008));
+  backdrop-filter:blur(10px);transition:all .3s}
+.skill-col li:hover{border-color:var(--gold);color:var(--gold)}
+
+/* EDUCATION */
+.edu{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.edu-card{background:linear-gradient(135deg,rgba(22,38,72,.5),rgba(10,16,34,.3));
+  backdrop-filter:blur(20px) saturate(140%);
+  border:1px solid rgba(130,170,255,.14);border-radius:14px;padding:36px 40px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 8px 28px rgba(0,0,30,.4)}
+.edu-date{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);
+  margin-bottom:12px}
+.edu-card h4{font-family:var(--font-disp);font-size:26px;font-weight:700;letter-spacing:-.01em;
+  line-height:1.2;margin-bottom:6px}
+.edu-card h4 em{font-style:italic;font-weight:400;color:var(--gold)}
+.edu-card p{font-size:14px;color:var(--mute);line-height:1.65;margin-top:14px}
+.edu-card .tag{display:inline-block;font-size:11px;letter-spacing:.1em;
+  padding:4px 10px;margin-top:16px;margin-right:6px;border:1px solid var(--border);
+  border-radius:100px;color:rgba(237,240,247,.72)}
+
+/* INTERESTS */
+.interests{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+.int{background:linear-gradient(135deg,rgba(255,255,255,.04),rgba(255,255,255,.008));
+  backdrop-filter:blur(14px);border:1px solid var(--border);border-radius:10px;
+  padding:26px 20px 22px;transition:all .35s var(--ease);text-align:center;position:relative;overflow:hidden}
+.int::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(200,169,110,.1),transparent 60%);opacity:0;transition:opacity .35s}
+.int:hover{border-color:var(--border2);transform:translateY(-3px)}
+.int:hover::before{opacity:1}
+.int-gl{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:12px;
+  border:1px solid var(--border2);background:rgba(200,169,110,.06);color:var(--gold);margin:0 auto 14px;
+  transition:transform .4s var(--ease)}
+.int:hover .int-gl{transform:translateY(-2px) rotate(-4deg)}
+.int-gl svg{width:20px;height:20px}
+.int h5{font-size:13px;font-weight:500;color:var(--text);margin-bottom:4px;position:relative}
+.int p{font-size:11px;color:var(--mute);line-height:1.45;position:relative}
+
+/* CTA */
+.cv-cta{margin-top:80px;padding:60px;text-align:center;
+  background:linear-gradient(135deg,rgba(22,38,72,.5),rgba(10,16,34,.3));
+  backdrop-filter:blur(22px) saturate(150%);border:1px solid rgba(130,170,255,.14);
+  border-radius:14px}
+.cv-cta h3{font-family:var(--font-disp);font-size:clamp(30px,4vw,44px);font-weight:700;
+  letter-spacing:-.02em;margin-bottom:14px;line-height:1.1}
+.cv-cta h3 em{font-style:italic;color:var(--gold);font-weight:400}
+.cv-cta p{font-size:15.5px;color:var(--mute);max-width:540px;margin:0 auto 32px}
+.cta-row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn{font-size:13px;letter-spacing:.1em;text-transform:uppercase;padding:14px 28px;
+  border-radius:100px;transition:all .3s var(--ease);font-weight:500}
+.btn-p{background:var(--gold);color:#000;border:1px solid var(--gold)}
+.btn-p:hover{background:var(--gold2);box-shadow:0 10px 30px rgba(200,169,110,.3)}
+.btn-s{color:var(--gold);border:1px solid var(--border2);
+  background:rgba(200,169,110,.04);backdrop-filter:blur(12px)}
+.btn-s:hover{background:var(--gold);color:#000}
+
+footer{padding:50px 52px;border-top:1px solid var(--border);text-align:center;
+  color:var(--mute);font-size:12.5px;letter-spacing:.08em}
+footer a{color:var(--gold)}
+
+.rv{opacity:0;transform:translateY(22px);filter:blur(6px);transition:opacity .9s var(--ease),transform .9s var(--ease),filter .9s var(--ease)}
+.rv.on{opacity:1;transform:none;filter:blur(0)}
+
+/* STRENGTHS icon swap */
+.str-icon{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:10px;border:1px solid var(--border2);background:rgba(200,169,110,.06);color:var(--gold);margin-bottom:14px;transition:transform .5s var(--ease)}
+.str:hover .str-icon{transform:rotate(-6deg) scale(1.08)}
+.str-icon svg{width:20px;height:20px}
+
+@media(max-width:900px){
+  nav{padding:16px 22px}.nav-links{display:none}
+  .hero{padding:140px 24px 60px}
+  section{padding:80px 24px}
+  .philosophy{grid-template-columns:1fr;gap:40px}
+  .split-two{grid-template-columns:1fr}
+  .strengths{grid-template-columns:1fr 1fr}
+  .skills{grid-template-columns:1fr}
+  .edu{grid-template-columns:1fr}
+  .interests{grid-template-columns:1fr 1fr}
+  .timeline{padding-left:28px}
+  .tl-item{margin-left:0!important}
+  .tl-item::before{display:none}
+  .tl-item::after{left:-26px}
+  .tl-role{font-size:19px}
+}
+@media(max-width:540px){
+  nav{padding:14px 18px}
+  .back{left:18px;top:64px;font-size:12px}
+  .hero{padding:120px 18px 44px}
+  section{padding:52px 18px}
+  h1{font-size:clamp(36px,10vw,58px)!important}
+  h2{font-size:clamp(24px,6.4vw,34px)!important}
+  .timeline{padding-left:24px}
+  .tl-item{margin-left:0!important}
+  .tl-item::before{display:none}
+  .tl-item::after{font-size:10px}
+}
+
+</style>
+</head>
+
+
+<nav>
+  <a class="nav-logo" href="index.html">Simran<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="cv.html" class="active">CV</a></li>
+    <li><a href="author-ai.html">Author.AI</a></li>
+    <li><a href="index.html#contact">Connect</a></li>
+  </ul>
+  <a href="https://chatgpt.com/g/g-69517b4ef32481918f687dfdaffbfc55-simran-raj-bhyana-for-hire" target="_blank" class="nav-cta">Simran.GPT ↗</a>
+</nav>
+
+<div class="side-index">
+  <a href="#philosophy">Philosophy</a>
+  <a href="#experience">Experience</a>
+    <a href="#education">Education</a>
+  <a href="#interests">Interests</a>
+</div>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-portrait" id="cvPortrait"><img src="img/simran.jpeg" alt="" onerror="this.parentElement.style.display='none'"/></div>
+  <div class="eyebrow">Curriculum Vitae · 2026</div>
+  <h1>Simran Raj Bhyana</h1>
+  <p class="hero-sub">Product Marketing Manager specialising in positioning, messaging, and GTM strategy for 50+ brands.</p>
+  <div class="hero-meta">
+    <div>6yrsProfessional experience</div>
+    <div>50+Brands shipped</div>
+    <div>₹100 Cr+Launches owned</div>
+    <div>4.6M+YouTube views · social-experiment DVC</div>
+    
+  </div>
+</header>
+
+<!-- APPROACH -->
+<section id="philosophy">
+  <div class="sec-head">
+    <div>
+      <div class="sec-num">01 · Approach</div>
+      <h2>How I work</h2>
+    </div>
+    <div class="sec-kicker">Six years of positioning, messaging and GTM across real estate, agency, and B2C. One operating principle.</div>
+  </div>
+
+  <div class="philosophy">
+    <div>
+      <div class="pull"><span>Category before copy.</span> Position first — everything downstream is distribution.</div>
+    </div>
+    <div>
+      <p>Narrative is infrastructure. When the story is sharp, everything else aligns.</p>
+      <p>Category before copy. The best writing can't save a muddled position. Name the elephant in the room, build downstream.</p>
+      <p>Speed is a muscle. Agency timelines trained me to deliver high-quality work under severe compression.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="sec-head">
+    <div>
+      <div class="sec-num">02 · Experience</div>
+      <h2>Six years, in order</h2>
+    </div>
+    <div class="sec-kicker">Intern to Group Head Copy to PMM pivot, across real estate, agency, B2B and a ₹100 Cr launch.</div>
+  </div>
+
+  <div class="timeline">
+
+    <details class="tl-item" open>
+      <summary>
+        <div class="tl-date">Dec 2025, Present · Career break</div>
+        <div class="tl-role"><span class="tl-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>The pivot</div>
+        <div class="tl-org">Independent · Consolidating · Targeting senior brand &amp; marketing roles</div>
+        <span class="chev"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></span>
+      </summary>
+      <div class="tl-body">
+        <p>Consolidating learnings from agency and brand mandates to target senior roles with deeper ownership.</p>
+        
+      </div>
+    </details>
+
+    <details class="tl-item">
+      <summary>
+        <div class="tl-date">Sept 2025 — Dec 2025</div>
+        <div class="tl-role"><span class="tl-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 12h12M4 18h8"/></svg></span>Group Head, Copy</div>
+        <div class="tl-org">Sociowash · Prime Video · Flipkart × Realme · District · Snabbit · Uber · Moto</div>
+        <span class="chev"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></span>
+      </summary>
+      <div class="tl-body">
+        <p>Led positioning and GTM for high-velocity launches across OTT and consumer electronics.</p>
+        <p>Owned strategic direction on high-priority mandates, handling 3+ projects a week directly with founders.</p>
+        
+        <div class="tl-metrics">
+          <div>3+Projects / week</div>
+          <div>₹5L-₹1CrBudget range</div>
+          <div>6Tier-1 brands</div>
+        </div>
+      </div>
+    </details>
+
+    <details class="tl-item">
+      <summary>
+        <div class="tl-date">Jul 2024 — Sept 2025 · ~14 months</div>
+        <div class="tl-role"><span class="tl-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 17l5-5 4 4 7-7"/><path d="M14 9h6v6"/></svg></span>Copy Supervisor</div>
+        <div class="tl-org">FoxyMoron · Hero MotoCorp · SanDisk · Tata Neu · Marks &amp; Spencer · Oberoi Hotels</div>
+        <span class="chev"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></span>
+      </summary>
+      <div class="tl-body">
+        <p>Led creative strategy across four tier-one brands, including a DVC with 4.6M+ views.</p>
+        <p>SanDisk repositioning. Moved brand from commodity storage to The Pursuit of Photography.</p>
+        <p>M&amp;S — BraFit. ₹18 Lakh film. Concepted "uncomfortable chairs" — a visual metaphor for wrong-fit bras. Script, narrative, concept.</p>
+        <p></p>
+        <p>Supervised a 3-member writing team and drove successful pitches for Oberoi Hotels, Tata Neu, and SanDisk.</p>
+        <div class="tl-metrics">
+          <div>4.6M+YouTube views · DVC</div>
+          <div>3Writers led</div>
+          <div>₹18LM&amp;S film budget</div>
+          <div>5+Pitches won</div>
+        </div>
+      </div>
+    </details>
+
+    <details class="tl-item">
+      <summary>
+        <div class="tl-date">Jan 2023, May 2024 · ~17 months</div>
+        <div class="tl-role"><span class="tl-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/></svg></span>Lead, Copy</div>
+        <div class="tl-org">iCubesWire · Ambience · Omaxe · Flipkart · Myntra · Puma</div>
+        <span class="chev"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></span>
+      </summary>
+      <div class="tl-body">
+        <p>Handled creative for 20+ brands. Launched major real estate campaigns and revamped websites.</p>
+        <p>Led a 4-member team and ₹12 L/month content budgets; cut delivery time by 30%.</p>
+        <div class="tl-metrics">
+          <div>20+Brands</div>
+          <div>4Team size</div>
+          <div>₹12L/moContent budgets</div>
+          <div>30%Delivery-time cut</div>
+        </div>
+      </div>
+    </details>
+
+    <details class="tl-item">
+      <summary>
+        <div class="tl-date">Oct 2021 — Oct 2022 · The breakthrough</div>
+        <div class="tl-role"><span class="tl-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 10l9-7 9 7v10a1 1 0 01-1 1h-5v-6h-6v6H4a1 1 0 01-1-1V10z"/></svg></span>Marketing Manager / Asst. Manager</div>
+        <div class="tl-org">Maa Homes · Bangalore · Real estate · ₹100 Cr+ launches</div>
+        <span class="chev"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></span>
+      </summary>
+      <div class="tl-body">
+        <p>Drove ₹100 Cr+ project launches end-to-end. Executed major channel-partner event with 40% conversion.</p>
+        
+        
+        <div class="tl-metrics">
+          <div>₹100 Cr+Project scale</div>
+          <div>₹27LCP event</div>
+          <div>350+Brokers</div>
+          <div>40%Conversion</div>
+          <div>22%Lead-to-visit lift</div>
+        </div>
+        <div class="tl-media">
+          <div class="cell logo"><img src="img/maa-logo.png" alt="Maa Homes logo"/></div>
+          <div class="cell"><img src="img/maa-render.png" alt="Maa Homes — project render"/><span class="cap">Project render</span></div>
+          <div class="cell"><img src="img/maa-event.webp" alt="Maa Homes — channel-partner event"/><span class="cap">CP event · 350+ brokers</span></div>
+        </div>
+      </div>
+    </details>
+
+    <details class="tl-item">
+      <summary>
+        <div class="tl-date">Mar 2021, Oct 2021</div>
+        <div class="tl-role"><span class="tl-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20h16M4 20V8l8-5 8 5v12M9 20v-6h6v6"/></svg></span>Content Writer</div>
+        <div class="tl-org">Elegance Enterprises · Godrej · Prestige · Total Environment</div>
+        <span class="chev"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></span>
+      </summary>
+      <div class="tl-body">
+        <p>Created campaigns for major real estate developers to support demand generation.</p>
+        
+      </div>
+    </details>
+
+    <details class="tl-item">
+      <summary>
+        <div class="tl-date">May 2020 — Feb 2021</div>
+        <div class="tl-role"><span class="tl-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg></span>Marketing Intern · 0 → 1 Role</div>
+        <div class="tl-org">21 Degree · Pune · E-commerce startup · MNGL account</div>
+        <span class="chev"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></span>
+      </summary>
+      <div class="tl-body">
+        <p>Built marketing engine for e-commerce startup (30+ SKUs).</p>
+        
+        <p>Hands-on media buying, ORM, and brand voice.</p>
+        <div class="tl-metrics">
+          <div>260%Engagement growth</div>
+          <div>48→4 hrsResponse time</div>
+          <div>30+SKUs</div>
+        </div>
+      </div>
+    </details>
+
+    <details class="tl-item">
+      <summary>
+        <div class="tl-date">Jul 2019 — Apr 2020</div>
+        <div class="tl-role"><span class="tl-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 9a6 6 0 0112 0v4a6 6 0 01-12 0z"/><path d="M3 21c2-4 6-5 9-5s7 1 9 5"/></svg></span>Guest Service Officer</div>
+        <div class="tl-org">Hyatt Regency · Hospitality · The origin story</div>
+        <span class="chev"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg></span>
+      </summary>
+      <div class="tl-body">
+        <p>Learnt service psychology and empathy.</p>
+      </div>
+    </details>
+
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education" style="padding-top:40px">
+  <div class="sec-head">
+    <div>
+      <div class="sec-num">04 · Education</div>
+      <h2>Where I trained</h2>
+    </div>
+    <div class="sec-kicker">Hospitality gave me the service instinct. Masters' Union gave me the PMM frameworks.</div>
+  </div>
+
+  <div class="edu">
+    <div class="edu-card">
+      <div class="edu-date">2023, 2024 · Gurugram</div>
+      <h4>Masters' Union, Strategic Marketing & AI</h4>
+      <p>GTM, buyer psychology, AI workflow automation.</p>
+      <p>Won capstone project by repositioning business as logistics arbitrage.</p>
+      <span class="tag">GTM</span>
+      <span class="tag">Lifecycle</span>
+      <span class="tag">Buyer psychology</span>
+      <span class="tag">Brand salience</span>
+    </div>
+    <div class="edu-card">
+      <div class="edu-date">2016, 2019</div>
+      <h4>IHM Chandigarh, B.Sc. Hospitality & Hotel Administration</h4>
+      <p>Hospitality training, guest psychology, operational instinct.</p>
+      <span class="tag">Kitchen Club</span>
+      <span class="tag">Editorial Board</span>
+      <span class="tag">Service design</span>
+    </div>
+  </div>
+</section>
+
+<!-- INTERESTS -->
+<section id="interests">
+  <div class="sec-head">
+    <div>
+      <div class="sec-num">05 · Off the clock</div>
+      <h2>What I care about</h2>
+    </div>
+    <div class="sec-kicker">The inputs that shape the taste.</div>
+  </div>
+
+  <div class="interests">
+    <div class="int">
+      <div class="int-gl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M3 20l6-10 4 6 3-4 5 8z"/><circle cx="16" cy="6" r="1.5" fill="currentColor"/></svg></div>
+      <h5>Hiking</h5>
+      <p>Long walks · quiet thinking time.</p>
+    </div>
+    <div class="int">
+      <div class="int-gl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 12a7 7 0 0014 0M12 19v3M8 22h8"/></svg></div>
+      <h5>Stand-up</h5>
+      <p>Timing, taste, the perfect line.</p>
+    </div>
+    <div class="int">
+      <div class="int-gl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 4a4 4 0 00-4 4v2a3 3 0 00-1 5 4 4 0 005 3 4 4 0 007-3V8a4 4 0 00-4-4H9z"/><path d="M12 11v8"/></svg></div>
+      <h5>Psychology</h5>
+      <p>Why people decide, then buy.</p>
+    </div>
+    <div class="int">
+      <div class="int-gl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17l10-10M4 20l3-3M17 7l3-3"/><circle cx="14" cy="10" r="2.5"/></svg></div>
+      <h5>Cricket</h5>
+      <p>Long format · patience as strategy.</p>
+    </div>
+    <div class="int">
+      <div class="int-gl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 18V6l10-2v12"/><circle cx="7" cy="18" r="2.5"/><circle cx="17" cy="16" r="2.5"/></svg></div>
+      <h5>Music</h5>
+      <p>The emotional shape of ideas.</p>
+    </div>
+    <div class="int">
+      <div class="int-gl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="8" width="16" height="11" rx="2"/><path d="M12 3v5M9 13h.01M15 13h.01M8 19v2M16 19v2"/></svg></div>
+      <h5>AI systems</h5>
+      <p>Workflows as architecture.</p>
+    </div>
+  </div>
+
+  <div class="cv-cta">
+    <h3>Want to pressure-test any of this?</h3>
+    <p>Talk to Simran.GPT, a trained agent with the full context, interview-ready and on-brand. Or jump straight to the work.</p>
+    <div class="cta-row">
+      <a href="https://chatgpt.com/g/g-69517b4ef32481918f687dfdaffbfc55-simran-raj-bhyana-for-hire" target="_blank" class="btn btn-p">Interview Simran.GPT ↗</a>
+      <a href="projects.html" class="btn btn-s">See the work →</a>
+      <a href="index.html#contact" class="btn btn-s">Get in touch</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © Simran Raj Bhyana · <a href="index.html">Home</a> · <a href="projects.html">Projects</a> · <a href="author-ai.html">Author.AI</a>
+</footer>
+
+<script>
+// side-index active state
+const sections=document.querySelectorAll('section[id]');
+const links=document.querySelectorAll('.side-index a');
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      links.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+e.target.id));
+    }
+  });
+},{rootMargin:'-40% 0px -55% 0px'});
+sections.forEach(s=>io.observe(s));
+
+(function(){const p=document.querySelector('#cvPortrait img');if(!p)return;let t=false;window.addEventListener('scroll',()=>{if(t)return;t=true;requestAnimationFrame(()=>{p.style.transform='translate3d(0,'+(window.scrollY*.22)+'px,0) scale(1.04)';t=false})},{passive:true})})();
+
+document.querySelectorAll('section, .tl-item, .str, .edu-card, .int, .cv-cta, .pull, .split-card').forEach(el=>el.classList.add('rv'));
+const rvIo=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');rvIo.unobserve(e.target)}}),{rootMargin:'-8% 0px -8% 0px',threshold:.05});
+document.querySelectorAll('.rv').forEach(el=>rvIo.observe(el));
+</script>
+
+
+</html>

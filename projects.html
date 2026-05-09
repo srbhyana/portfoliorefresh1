@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+<title>Projects, Simran Raj Bhyana</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Syne:wght@400;700;800&display=swap" rel="stylesheet"/>
+<style>
+:root{--gold:#c8a96e;--gold2:#e8c87a;--gold-dim:rgba(200,169,110,.18);
+  --bg:#070b13;--bg2:#0b1120;--surf:#101828;--surf2:#152035;
+  --text:#edf0f7;--mute:rgba(237,240,247,.52);
+  --border:rgba(255,255,255,.08);--border2:rgba(200,169,110,.22);
+  --ease:cubic-bezier(.16,1,.3,1);
+  --font-sans:'Inter',sans-serif;--font-disp:'Syne',sans-serif;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font-sans);
+  font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--gold);color:#000}
+a{color:inherit;text-decoration:none}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;
+  align-items:center;justify-content:space-between;padding:24px 52px;
+  background:rgba(7,11,19,.72);backdrop-filter:blur(20px) saturate(140%);
+  border-bottom:1px solid var(--border)}
+.nav-logo{font-family:var(--font-disp);font-size:17px;font-weight:800;letter-spacing:-.02em}
+.nav-logo span{color:var(--gold)}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{font-size:11.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(237,240,247,.62);transition:color .25s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;
+  background:var(--gold);transition:width .3s var(--ease)}
+.nav-links a:hover,.nav-links a.active{color:var(--text)}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.nav-cta{font-size:12px;padding:9px 22px;border:1px solid var(--border2);border-radius:100px;
+  color:var(--gold);background:rgba(200,169,110,.04);backdrop-filter:blur(12px);
+  transition:all .3s var(--ease)}
+.nav-cta:hover{background:var(--gold);color:#000}
+
+/* HEADER */
+.head{padding:180px 52px 60px;max-width:1280px;margin:0 auto;
+  position:relative}
+.head::before{content:'';position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 50% 60% at 85% 20%,rgba(20,60,140,.38),transparent 70%)}
+.eyebrow{font-size:11px;letter-spacing:.32em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:24px;position:relative}
+.eyebrow::before{content:'';display:inline-block;width:36px;height:1px;
+  background:var(--gold);vertical-align:middle;margin-right:14px}
+h1{font-family:var(--font-disp);font-size:clamp(46px,7vw,92px);font-weight:800;
+  line-height:.92;letter-spacing:-.035em;margin-bottom:28px;position:relative}
+h1 em{font-style:italic;font-weight:400;color:var(--gold)}
+.sub{font-size:18px;color:var(--mute);max-width:620px;line-height:1.65;position:relative}
+
+/* LIBRARY STRIP */
+.meta-strip{display:flex;gap:40px;padding:28px 52px;max-width:1280px;margin:0 auto;
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute)}
+.meta-strip b{color:var(--text);font-weight:500;margin-right:8px}
+
+/* CHAPTERS (BOOK-FLIP) */
+.chapters{padding:80px 52px 160px;max-width:1280px;margin:0 auto;
+  display:grid;grid-template-columns:1fr;gap:28px}
+
+.chapter{perspective:2200px;position:relative}
+.chapter-book{position:relative;min-height:220px;transition:min-height .55s var(--ease)}
+.chapter.open .chapter-book{min-height:auto}
+
+/* COVER (the flipping piece) */
+.chapter-cover{
+  position:relative;z-index:3;
+  background:linear-gradient(135deg,rgba(22,38,72,.55),rgba(10,16,34,.42));
+  backdrop-filter:blur(22px) saturate(150%);
+  -webkit-backdrop-filter:blur(22px) saturate(150%);
+  border:1px solid rgba(130,170,255,.14);border-radius:14px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 12px 40px rgba(0,0,30,.45),
+    -2px 0 0 rgba(200,169,110,.35);
+  padding:48px 56px;cursor:pointer;
+  display:grid;grid-template-columns:auto 1fr auto;gap:48px;align-items:center;
+  transform-origin:left center;transform-style:preserve-3d;
+  transition:transform .95s var(--ease),box-shadow .5s,opacity .6s .3s}
+.chapter.open .chapter-cover{
+  transform:rotateY(-158deg);opacity:0;pointer-events:none}
+.chapter-num{font-family:var(--font-disp);font-size:72px;font-weight:800;
+  line-height:1;color:transparent;-webkit-text-stroke:1px var(--gold);letter-spacing:-.04em}
+.chapter-head h2{font-family:var(--font-disp);font-size:42px;font-weight:700;
+  letter-spacing:-.02em;line-height:1;margin-bottom:12px}
+.chapter-head h2 em{font-style:italic;font-weight:400;color:var(--gold)}
+.chapter-head p{font-size:14.5px;color:var(--mute);max-width:540px}
+.chapter-open-btn{font-family:var(--font-disp);font-size:11px;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--gold);padding:14px 22px;
+  border:1px solid var(--border2);border-radius:100px;
+  white-space:nowrap;transition:all .3s var(--ease)}
+.chapter:hover .chapter-open-btn{background:var(--gold);color:#000;border-color:var(--gold)}
+
+/* PAGES (revealed) */
+.chapter-pages{position:relative;z-index:1;padding:8px 0 0;
+  opacity:0;max-height:0;overflow:hidden;
+  transition:opacity .5s .35s var(--ease),max-height .7s var(--ease),padding .5s}
+.chapter.open .chapter-pages{opacity:1;max-height:2000px;padding:8px 0 4px}
+.chapter-inner{background:linear-gradient(180deg,rgba(14,22,48,.55),rgba(8,12,28,.35));
+  backdrop-filter:blur(18px) saturate(135%);
+  border:1px solid rgba(130,170,255,.1);border-radius:14px;
+  padding:44px 52px}
+.chapter-title-row{display:flex;justify-content:space-between;align-items:baseline;
+  padding-bottom:22px;margin-bottom:28px;border-bottom:1px solid var(--border)}
+.chapter-title-row h3{font-family:var(--font-disp);font-size:24px;font-weight:700;letter-spacing:-.01em}
+.chapter-title-row h3 em{font-style:italic;font-weight:400;color:var(--gold)}
+.chapter-close{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--mute);
+  cursor:pointer;transition:color .2s}
+.chapter-close:hover{color:var(--gold)}
+
+/* ITEM GRID */
+.items{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.items.three{grid-template-columns:repeat(3,1fr)}
+.items.one{grid-template-columns:1fr}
+.item{background:linear-gradient(135deg,rgba(255,255,255,.04),rgba(255,255,255,.01));
+  backdrop-filter:blur(12px);border:1px solid var(--border);border-radius:10px;
+  padding:26px 28px;transition:all .35s var(--ease);display:block;
+  position:relative;overflow:hidden}
+.item::before{content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 80% at 0% 0%,rgba(200,169,110,.06),transparent 60%);
+  opacity:0;transition:opacity .35s}
+.item:hover{border-color:var(--border2);transform:translateY(-3px);
+  box-shadow:0 14px 40px rgba(0,0,30,.5)}
+.item:hover::before{opacity:1}
+.item-tag{font-size:10px;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:14px;display:block}
+.item-title{font-family:var(--font-disp);font-size:22px;font-weight:700;
+  line-height:1.15;letter-spacing:-.01em;margin-bottom:10px}
+.item-title em{font-style:italic;font-weight:400;color:var(--gold)}
+.item-desc{font-size:13.5px;color:var(--mute);line-height:1.55;margin-bottom:18px}
+.item-metric{display:flex;gap:20px;padding-top:16px;border-top:1px solid var(--border);
+  font-size:11px;letter-spacing:.06em;color:var(--mute)}
+.item-metric b{display:block;font-family:var(--font-disp);font-size:17px;color:var(--text);
+  font-weight:700;letter-spacing:0;margin-bottom:2px}
+.item-arrow{position:absolute;top:26px;right:28px;color:var(--gold);font-size:14px;
+  opacity:.5;transition:all .3s}
+.item:hover .item-arrow{opacity:1;transform:translate(3px,-3px)}
+
+/* FOOTER */
+footer{padding:60px 52px;border-top:1px solid var(--border);text-align:center;
+  color:var(--mute);font-size:12.5px;letter-spacing:.08em}
+footer a{color:var(--gold)}
+
+@media(max-width:820px){
+  nav{padding:18px 24px}
+  .nav-links{display:none}
+  .head{padding:150px 24px 40px}
+  .meta-strip{flex-direction:column;gap:8px;padding:24px}
+  .chapters{padding:50px 24px 100px}
+  .chapter-cover{grid-template-columns:1fr;gap:24px;padding:36px 28px;text-align:left}
+  .chapter-num{font-size:56px}
+  .chapter-head h2{font-size:30px}
+  .chapter-inner{padding:32px 24px}
+  .items,.items.three{grid-template-columns:1fr}
+}
+@media(max-width:540px){
+  nav{padding:14px 18px}
+  .back{left:18px;top:64px;font-size:12px}
+  .hero{padding:120px 18px 44px}
+  section{padding:52px 18px}
+  h1{font-size:clamp(36px,10vw,56px)!important}
+  h2{font-size:clamp(24px,6.4vw,34px)!important}
+  .eyebrow{font-size:11px}
+  .stats{flex-wrap:wrap;gap:18px}
+  .stat-num{font-size:32px}
+}
+
+</style>
+</head>
+
+
+<nav>
+  <a class="nav-logo" href="index.html">Simran<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="projects.html" class="active">Projects</a></li>
+    <li><a href="cv.html">CV</a></li>
+    <li><a href="author-ai.html">Author.AI</a></li>
+    <li><a href="index.html#contact">Connect</a></li>
+  </ul>
+  <a href="https://chatgpt.com/g/g-69517b4ef32481918f687dfdaffbfc55-simran-raj-bhyana-for-hire" target="_blank" class="nav-cta">Simran.GPT ↗</a>
+</nav>
+
+<header class="head">
+  <div class="eyebrow">The Library</div>
+  <h1>Four chapters.Eleven stories.</h1>
+  <p class="sub">Six years of positioning, messaging, B2B systems and the AI stack I built to out-ship teams ten times my size. Click a chapter. It opens.</p>
+</header>
+
+<div class="meta-strip">
+  <span>11Projects</span>
+  <span>4.6M+YouTube views · DVC</span>
+  <span>3B2B case studies</span>
+  <span>1AI chronicle</span>
+</div>
+
+<section class="chapters">
+
+  <!-- CH 01, POSITIONING -->
+  <article class="chapter" data-ch="01">
+    <div class="chapter-book">
+      <div class="chapter-cover">
+        <div class="chapter-num">01</div>
+        <div class="chapter-head">
+          <h2>Positioning work</h2>
+          <p>Naming the thing the category is pretending not to see, then dragging the whole market toward it.</p>
+        </div>
+        <div class="chapter-open-btn">Open chapter →</div>
+      </div>
+      <div class="chapter-pages">
+        <div class="chapter-inner">
+          <div class="chapter-title-row">
+            <h3>Chapter 01, Positioning</h3>
+            <div class="chapter-close">Close ×</div>
+          </div>
+          <div class="items three">
+            <a class="item" href="sandisk.html">
+              <span class="item-arrow">↗</span>
+              <span class="item-tag">Western Digital</span>
+              <div class="item-title">SanDisk Professional</div>
+              <p class="item-desc">Repositioning a memory-card maker as the storage brand of record for working creators. Built the pro tier from narrative up.</p>
+              <div class="item-metric"><div>GlobalLaunch</div><div>Pro-tierNaming</div></div>
+            </a>
+            <a class="item" href="ecostone.html">
+              <span class="item-arrow">↗</span>
+              <span class="item-tag">Subhaecostone</span>
+              <div class="item-title">Ecostone, stone, reframed</div>
+              <p class="item-desc">Turning a commoditised quartz business into a premium architectural surface brand. Category creation, not category entry.</p>
+              <div class="item-metric"><div>D2AArchitect-led</div><div>₹₹₹Premium tier</div></div>
+            </a>
+            <a class="item" href="others.html">
+              <span class="item-arrow">↗</span>
+              <span class="item-tag">Tata Neu · Young Monk · Moto</span>
+              <div class="item-title">Three more rewrites</div>
+              <p class="item-desc">A super-app playbook, a craft spirit's signature, a smartphone's voice, three positioning briefs in one case.</p>
+              <div class="item-metric"><div>3×Brands</div><div>1Case</div></div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- CH 02, MESSAGING -->
+  <article class="chapter" data-ch="02">
+    <div class="chapter-book">
+      <div class="chapter-cover">
+        <div class="chapter-num">02</div>
+        <div class="chapter-head">
+          <h2>Messaging at scale</h2>
+          <p>Campaigns, headlines, launches. Writing that moved on feeds, on shelves, on pitch decks.</p>
+        </div>
+        <div class="chapter-open-btn">Open chapter →</div>
+      </div>
+      <div class="chapter-pages">
+        <div class="chapter-inner">
+          <div class="chapter-title-row">
+            <h3>Chapter 02, Messaging</h3>
+            <div class="chapter-close">Close ×</div>
+          </div>
+          <div class="items">
+            <a class="item" href="wdblack.html">
+              <span class="item-arrow">↗</span>
+              <span class="item-tag">WD_BLACK · Gaming</span>
+              <div class="item-title">WD_BLACK Game Drive</div>
+              <p class="item-desc">Launch campaign for a gamer-first SSD line. Copy, creator briefs, the whole narrative arc.</p>
+              <div class="item-metric"><div>TopicalSeries</div><div>GamingFirst creative</div></div>
+            </a>
+            <a class="item" href="ms.html">
+              <span class="item-arrow">↗</span>
+              <span class="item-tag">M&S · Retail</span>
+              <div class="item-title">M&S, the everyday, earned</div>
+              <p class="item-desc">A messaging system for a brand with a hundred inventories and one voice problem.</p>
+              <div class="item-metric"><div>Multi-catSystem</div><div>UKRetail</div></div>
+            </a>
+            <a class="item" href="freedom.html">
+              <span class="item-arrow">↗</span>
+              <span class="item-tag">Freedom Oil · CPG</span>
+              <div class="item-title">Freedom Oil campaign</div>
+              <p class="item-desc">Cooking oil, rewritten as a household-health story. Films, OOH, retail, the full stack.</p>
+              <div class="item-metric"><div>CPGNational</div><div>360°Rollout</div></div>
+            </a>
+            <a class="item" href="headlines.html">
+              <span class="item-arrow">↗</span>
+              <span class="item-tag">Greatest hits</span>
+              <div class="item-title">Headlines, unassigned</div>
+              <p class="item-desc">Lines that traveled. A reel of the one-liners, taglines and openers that paid rent.</p>
+              <div class="item-metric"><div>20+Brands</div><div>ReelOngoing</div></div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- CH 03, B2B -->
+  <article class="chapter" data-ch="03">
+    <div class="chapter-book">
+      <div class="chapter-cover">
+        <div class="chapter-num">03</div>
+        <div class="chapter-head">
+          <h2>B2B spec case studies</h2>
+          <p>Three PMM assignments, treated as real launches. Research, narrative, GTM, metrics, end to end.</p>
+        </div>
+        <div class="chapter-open-btn">Open chapter →</div>
+      </div>
+      <div class="chapter-pages">
+        <div class="chapter-inner">
+          <div class="chapter-title-row">
+            <h3>Chapter 03, B2B spec</h3>
+            <div class="chapter-close">Close ×</div>
+          </div>
+          <div class="items three">
+            <a class="item" href="spry.html">
+              <span class="item-arrow">↗</span>
+              <span class="item-tag">Physio SaaS</span>
+              <div class="item-title">Spry, AI for PTs</div>
+              <p class="item-desc">Positioning & launch plan for an AI agent serving physical therapy clinics. Competitive teardown + 90-day GTM.</p>
+              <div class="item-metric"><div>HealthcareVertical</div><div>AICategory</div></div>
+            </a>
+            <a class="item" href="writesonic.html">
+              <span class="item-arrow">↗</span>
+              <span class="item-tag">GEO / AI search</span>
+              <div class="item-title">Writesonic, GEO play</div>
+              <p class="item-desc">A full PMM assignment: framing Writesonic for the Generative Engine Optimization shift. Submitted, shortlisted.</p>
+              <div class="item-metric"><div>GEOCategory</div><div>FullAssignment</div></div>
+            </a>
+            <a class="item" href="zluri.html">
+              <span class="item-arrow">↗</span>
+              <span class="item-tag">SaaS governance</span>
+              <div class="item-title">Zluri, the SaaS-ops story</div>
+              <p class="item-desc">Narrative repositioning for a SaaS management platform. From "discovery tool" to governance backbone.</p>
+              <div class="item-metric"><div>ITBuyer</div><div>EnterpriseICP</div></div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- CH 04, AI -->
+  <article class="chapter" data-ch="04">
+    <div class="chapter-book">
+      <div class="chapter-cover">
+        <div class="chapter-num">04</div>
+        <div class="chapter-head">
+          <h2>The AI chronicle</h2>
+          <p>How a PMM-of-one built a seven-agent operating system, and why it ships better work than most teams.</p>
+        </div>
+        <div class="chapter-open-btn">Open chapter →</div>
+      </div>
+      <div class="chapter-pages">
+        <div class="chapter-inner">
+          <div class="chapter-title-row">
+            <h3>Chapter 04, Author.AI</h3>
+            <div class="chapter-close">Close ×</div>
+          </div>
+          <div class="items one">
+            <a class="item" href="author-ai.html">
+              <span class="item-arrow">↗</span>
+              <span class="item-tag">Method · Philosophy · Systems</span>
+              <div class="item-title">Author.AI, the operating system</div>
+              <p class="item-desc">The BAN FILE, the seven-agent stack, and the thesis behind the work: AI as a taste amplifier, not a content factory. Plus Simran.GPT, a trained agent you can interview right now.</p>
+              <div class="item-metric">
+                <div>7Agents</div>
+                <div>1BAN FILE</div>
+                <div>LiveSimran.GPT</div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+</section>
+
+<footer>
+  © Simran Raj Bhyana · Built with Claude · <a href="index.html">Back home</a>
+</footer>
+
+<script>
+document.querySelectorAll('.chapter').forEach(ch=>{
+  const cover=ch.querySelector('.chapter-cover');
+  const close=ch.querySelector('.chapter-close');
+  cover.addEventListener('click',()=>{
+    const wasOpen=ch.classList.contains('open');
+    document.querySelectorAll('.chapter.open').forEach(o=>o.classList.remove('open'));
+    if(!wasOpen){
+      ch.classList.add('open');
+      setTimeout(()=>ch.scrollIntoView({behavior:'smooth',block:'start'}),350);
+    }
+  });
+  close.addEventListener('click',e=>{
+    e.stopPropagation();
+    ch.classList.remove('open');
+  });
+});
+// deep-link: projects.html#ch-02 opens chapter 2
+const hash=location.hash.replace('#ch-','');
+if(hash){
+  const target=document.querySelector(`.chapter[data-ch="${hash}"]`);
+  if(target)setTimeout(()=>target.querySelector('.chapter-cover').click(),400);
+}
+</script>
+
+
+</html>

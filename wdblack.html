@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="messaging">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+<title>WD Black, Messaging · Simran Raj Bhyana</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Syne:wght@400;700;800&display=swap" rel="stylesheet"/>
+<style>
+:root{--gold:#c8a96e;--gold2:#e8c87a;
+  --bg:#070c1a;--bg2:#0a1022;--surf:#0e1830;
+  --text:#dce8ff;--mute:rgba(220,232,255,.52);
+  --border:rgba(130,170,255,.12);--border2:rgba(200,169,110,.22);
+  --ease:cubic-bezier(.16,1,.3,1);
+  --font-sans:'Inter',sans-serif;--font-disp:'Syne',sans-serif}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font-sans);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--gold);color:#000}
+a{color:inherit;text-decoration:none}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:20px 52px;background:rgba(7,12,26,.72);backdrop-filter:blur(20px) saturate(140%);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:var(--font-disp);font-size:17px;font-weight:800;letter-spacing:-.02em}
+.nav-logo span{color:var(--gold)}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{font-size:11.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(220,232,255,.62);transition:color .25s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--gold);transition:width .3s var(--ease)}
+.nav-links a:hover,.nav-links a.active{color:var(--text)}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.nav-cta{font-size:12px;padding:9px 22px;border:1px solid var(--border2);border-radius:100px;color:var(--gold);background:rgba(200,169,110,.04);backdrop-filter:blur(12px)}
+.nav-cta:hover{background:var(--gold);color:#000}
+
+.back{position:fixed;top:90px;left:52px;z-index:50;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);transition:color .25s}
+.back:hover{color:var(--gold)}
+
+.hero{min-height:92vh;display:flex;flex-direction:column;justify-content:flex-end;padding:180px 52px 80px;max-width:1280px;margin:0 auto;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 60% 55% at 80% 20%,rgba(180,40,180,.15),transparent 70%),radial-gradient(ellipse 30% 40% at 5% 85%,rgba(200,169,110,.08),transparent 60%)}
+.meta-row{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:28px;font-size:10.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--mute);position:relative}
+.meta-row .dot{color:var(--gold)}
+.meta-row b{color:var(--gold);font-weight:500}
+h1{font-family:var(--font-disp);font-size:clamp(44px,6.6vw,84px);font-weight:800;line-height:.95;letter-spacing:-.035em;margin-bottom:32px;position:relative}
+h1 em{font-style:italic;font-weight:400;color:var(--gold)}
+.hero-sub{font-size:19px;color:var(--mute);max-width:720px;line-height:1.65;margin-bottom:48px;position:relative}
+.stats{display:flex;gap:48px;flex-wrap:wrap;padding-top:32px;border-top:1px solid var(--border);position:relative}
+.stat b{display:block;font-family:var(--font-disp);font-size:36px;font-weight:800;letter-spacing:-.02em;color:var(--text);line-height:1;margin-bottom:6px}
+.stat b em{font-style:italic;color:var(--gold);font-weight:400}
+.stat span{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute)}
+
+section{padding:72px 52px;max-width:1280px;margin:0 auto}
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;padding-bottom:24px;margin-bottom:48px;border-bottom:1px solid var(--border)}
+.sec-num{font-family:var(--font-disp);font-size:12px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase}
+.sec-head .lbl{font-size:11px;letter-spacing:.22em;color:var(--mute);text-transform:uppercase}
+h2{font-family:var(--font-disp);font-size:clamp(34px,4.8vw,60px);font-weight:700;letter-spacing:-.02em;line-height:1.05}
+h2 em{font-style:italic;font-weight:400;color:var(--gold)}
+
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.two-col h3{font-family:var(--font-disp);font-size:22px;font-weight:700;margin-bottom:16px;letter-spacing:-.01em;color:var(--gold)}
+.two-col p{font-size:15.5px;color:rgba(220,232,255,.78);margin-bottom:16px;line-height:1.75}
+.two-col p b{color:var(--text);font-weight:500}
+
+.pull{font-family:var(--font-disp);font-size:clamp(28px,3.6vw,48px);font-weight:400;font-style:italic;line-height:1.2;letter-spacing:-.015em;max-width:960px;margin:0 auto;text-align:center;padding:60px 0}
+.pull span{color:var(--gold)}
+.pull::before,.pull::after{content:'"';color:var(--gold)}
+.pull::before{margin-right:4px}.pull::after{margin-left:4px}
+
+.arc{margin-bottom:60px}
+.arc-head{display:flex;align-items:baseline;gap:18px;margin-bottom:24px;flex-wrap:wrap}
+.arc-head b{font-family:var(--font-disp);font-size:11.5px;letter-spacing:.28em;color:var(--gold);text-transform:uppercase}
+.arc-head h3{font-family:var(--font-disp);font-size:clamp(24px,2.4vw,30px);font-weight:700;letter-spacing:-.015em}
+.arc-head span{color:var(--mute);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;margin-left:auto}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.asset{background:linear-gradient(135deg,rgba(22,38,72,.5),rgba(10,16,34,.3));backdrop-filter:blur(20px) saturate(140%);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:all .4s var(--ease);display:block;box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}
+.asset:hover{border-color:var(--border2);transform:translateY(-4px);box-shadow:0 18px 45px rgba(0,0,30,.5),inset 0 1px 0 rgba(255,255,255,.08)}
+.asset-visual{aspect-ratio:9/12;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.asset-visual.wvgd{background:linear-gradient(135deg,#1a0a2a,#0a1030)}
+.asset-visual.holi{background:linear-gradient(135deg,#2a1028,#0a1030)}
+.asset-visual::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 30%,rgba(200,169,110,.15),transparent 60%),radial-gradient(circle at 70% 70%,rgba(180,40,180,.2),transparent 60%)}
+.asset-visual .ig{font-family:var(--font-disp);font-size:14px;letter-spacing:.2em;color:var(--gold);z-index:1;position:relative;opacity:.85}
+.asset-body{padding:22px 24px}
+.asset-body .tag{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.asset-body h4{font-family:var(--font-disp);font-size:17px;font-weight:700;letter-spacing:-.01em;margin-bottom:6px;line-height:1.25}
+.asset-body p{font-size:13px;color:var(--mute);line-height:1.55;margin-bottom:12px}
+.asset-body .watch{font-size:11px;letter-spacing:.15em;color:var(--gold);text-transform:uppercase}
+
+.deliverables{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.del{padding:22px 26px;border:1px solid var(--border);border-radius:10px;background:linear-gradient(135deg,rgba(255,255,255,.03),rgba(255,255,255,.008));backdrop-filter:blur(14px)}
+.del b{display:block;font-family:var(--font-disp);font-size:13px;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
+.del p{font-size:14px;color:rgba(220,232,255,.78);line-height:1.6}
+
+.pagenav{position:static!important;top:auto!important;z-index:auto!important;background:transparent!important;backdrop-filter:none!important;border-bottom:none!important;padding:60px 52px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border);max-width:1280px;margin:60px auto 0;flex-wrap:wrap;gap:20px}
+.pagenav a{font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--mute);transition:color .25s}
+.pagenav a:hover{color:var(--gold)}
+.pagenav a.prim{color:var(--gold);border:1px solid var(--border2);padding:14px 28px;border-radius:100px;background:rgba(200,169,110,.04)}
+.pagenav a.prim:hover{background:var(--gold);color:#000}
+footer{padding:40px 52px;border-top:1px solid var(--border);text-align:center;color:var(--mute);font-size:12px;letter-spacing:.08em}
+footer a{color:var(--gold)}
+
+.brand-mark{max-width:1280px;margin:0 auto;padding:0 52px 10px;display:flex;justify-content:center}
+.brand-mark img{height:44px;width:auto;opacity:.95;filter:drop-shadow(0 2px 12px rgba(200,169,110,.15))}
+.arc-banner{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:1280px;margin:0 auto;padding:0 52px 40px}
+.arc-banner a{display:block;position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--border);aspect-ratio:16/10;background:#050914;transition:transform .5s var(--ease)}
+.arc-banner a:hover{transform:translateY(-3px);border-color:var(--border2)}
+.arc-banner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.arc-banner a:hover img{transform:scale(1.04)}
+.arc-banner .tag{position:absolute;top:16px;left:16px;z-index:2;padding:6px 14px;background:rgba(7,12,26,.6);backdrop-filter:blur(10px);border:1px solid var(--border2);border-radius:100px;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+.arc-banner .lbl{position:absolute;bottom:18px;left:18px;right:18px;z-index:2;font-family:var(--font-disp);font-size:18px;font-weight:700;color:#fff;letter-spacing:-.01em}
+.arc-banner a::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.75) 100%);z-index:1}
+
+/* Arc split: head on left, openable rest on right */
+.arc-split{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:stretch}
+.arc-head-card{display:flex;flex-direction:column;border:1px solid var(--border);border-radius:16px;overflow:hidden;background:linear-gradient(135deg,rgba(22,38,72,.5),rgba(10,16,34,.3));backdrop-filter:blur(18px) saturate(140%);transition:all .4s var(--ease);box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}
+.arc-head-card:hover{border-color:var(--border2);transform:translateY(-3px);box-shadow:0 18px 45px rgba(0,0,30,.5)}
+.arc-head-card .thumb{position:relative;aspect-ratio:16/10;overflow:hidden}
+.arc-head-card .thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.arc-head-card:hover .thumb img{transform:scale(1.04)}
+.arc-head-card .thumb::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(7,12,26,.55));pointer-events:none}
+.arc-head-card .thumb .chip{position:absolute;top:14px;left:14px;padding:6px 12px;background:rgba(7,12,26,.6);backdrop-filter:blur(10px);border:1px solid var(--border2);border-radius:100px;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);z-index:2}
+.arc-head-card .head-body{padding:24px 26px 26px;flex:1;display:flex;flex-direction:column;gap:10px}
+.arc-head-card .head-body .tag{font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+.arc-head-card .head-body h4{font-family:var(--font-disp);font-size:22px;font-weight:700;letter-spacing:-.015em;line-height:1.2}
+.arc-head-card .head-body p{font-size:13.5px;color:rgba(220,232,255,.75);line-height:1.6}
+.arc-head-card .watch{font-size:11px;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;margin-top:auto;padding-top:10px}
+
+.arc-rest{display:flex;flex-direction:column;gap:14px}
+details.reel{border:1px solid var(--border);border-radius:12px;overflow:hidden;background:linear-gradient(135deg,rgba(22,38,72,.35),rgba(10,16,34,.2));backdrop-filter:blur(14px);transition:border-color .3s var(--ease)}
+details.reel[open]{border-color:var(--border2)}
+details.reel::-webkit-details-marker,details.reel>summary::-webkit-details-marker{display:none}
+details.reel>summary{list-style:none;cursor:pointer;padding:18px 22px;display:grid;grid-template-columns:56px 1fr auto;gap:18px;align-items:center;transition:background .25s}
+details.reel>summary:hover{background:rgba(200,169,110,.04)}
+details.reel .reel-icon{display:inline-flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:10px;border:1px solid var(--border2);color:var(--gold);background:rgba(200,169,110,.05)}
+details.reel .reel-icon svg{width:28px;height:28px;stroke:currentColor;stroke-width:1.6;fill:none}
+details.reel .reel-meta .tag{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+details.reel .reel-meta h5{font-family:var(--font-disp);font-size:16px;font-weight:700;letter-spacing:-.01em;line-height:1.25}
+details.reel>summary::after{content:'+';color:var(--gold);font-family:var(--font-disp);font-size:22px;line-height:1;font-weight:400}
+details.reel[open]>summary::after{content:'−'}
+details.reel .embed{padding:0 22px 22px;display:flex;flex-direction:column;gap:12px}
+details.reel .embed iframe{width:100%;aspect-ratio:9/16;max-height:540px;border:1px solid var(--border);border-radius:10px;background:#000}
+details.reel .embed .watch{font-size:11px;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;align-self:flex-start}
+
+@media(max-width:900px){
+  nav{padding:16px 22px}.nav-links{display:none}
+  .back{left:22px;top:72px}
+  .hero{padding:140px 24px 60px}section{padding:70px 24px}
+  .two-col{grid-template-columns:1fr;gap:32px}
+  .grid3{grid-template-columns:1fr}
+  .deliverables{grid-template-columns:1fr}
+  .stats{gap:24px}
+  .arc-banner{grid-template-columns:1fr;padding:0 22px 30px}
+  .arc-split{grid-template-columns:1fr;gap:20px}
+  .brand-mark{padding:0 22px 10px}
+  details.reel>summary{grid-template-columns:48px 1fr auto;gap:14px;padding:16px 18px}
+  details.reel .reel-icon{width:48px;height:48px}
+  details.reel .reel-icon svg{width:24px;height:24px}
+}
+@media(max-width:540px){
+  nav{padding:14px 18px}
+  .back{left:18px;top:64px;font-size:12px}
+  .hero{padding:120px 18px 44px}
+  section{padding:52px 18px}
+  h1{font-size:clamp(36px,10vw,58px)!important}
+  h2{font-size:clamp(24px,6.4vw,34px)!important}
+}
+
+</style>
+</head>
+
+
+<nav>
+  <a class="nav-logo" href="index.html">Simran<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="projects.html" class="active">Projects</a></li>
+    <li><a href="cv.html">CV</a></li>
+    <li><a href="author-ai.html">Author.AI</a></li>
+    <li><a href="index.html#contact">Connect</a></li>
+  </ul>
+  <a href="https://chatgpt.com/g/g-69517b4ef32481918f687dfdaffbfc55-simran-raj-bhyana-for-hire" target="_blank" class="nav-cta">Simran.GPT ↗</a>
+</nav>
+
+<a href="projects.html#ch-02" class="back">← Messaging chapter</a>
+
+<header class="hero">
+  <div class="meta-row">
+    <span>Case 06</span><span class="dot">·</span>
+    <span>Messaging</span><span class="dot">·</span>
+    <span>WD Black (Western Digital)</span><span class="dot">·</span>
+    <span>Topical series</span><span class="dot">·</span>
+    <span>FoxyMoron</span>
+  </div>
+  <h1>Every momentis a level up.</h1>
+  <p class="hero-sub">WD Black is the brand built for gamers. The category ignores that gamers live in the real world, festivals, rituals, friends. Two topical arcs, World Video Game Day and Holi, turned everyday chaos into game-mechanic storytelling. 42M Instagram reach, zero celebrity.</p>
+  <div class="stats">
+    <div class="stat">42M<span>Combined Instagram reach</span></div>
+    <div class="stat">27M<span>WVGD series</span></div>
+    <div class="stat">15M<span>Holi series</span></div>
+    <div class="stat">6<span>Hero reels · 2 arcs</span></div>
+  </div>
+</header>
+
+<div class="brand-mark"><img src="img/WD_BLACK_logo.webp" alt="WD Black logo"/></div>
+
+
+<section>
+  <div class="sec-head">
+    <div><div class="sec-num">01 · The brief</div><h2>Gaming storage, told like a gamer</h2></div>
+  </div>
+  <div class="two-col">
+    <div>
+      <h3>The problem</h3>
+      <p>Gamer-hardware advertising has a uniform tone, dark, RGB, muscular, joyless. Every brand sounds the same and none of them sound like the audience, whose actual lives are dominated by family, friends and festivals, with gaming woven through.</p>
+      <p>The remit, build topical-led messaging that felt native to Instagram reel grammar without losing the performance signal the product is known for.</p>
+    </div>
+    <div>
+      <h3>The insight</h3>
+      <p>The gamer's brain doesn't turn off between sessions. Holi isn't a festival, it's a full-throttle battle-royale. WVGD isn't a date, it's a quest unlocked. We wrote the real world as if it were the game, and let WD Black sit inside that world like it belonged.</p>
+      <p>Merged real life with game-style graphics, colleagues as characters, everyday moments as missions, topicals as quests. The brand became ambient, not intrusive.</p>
+    </div>
+  </div>
+</section>
+
+<div class="pull">Gamer-hardware brands talk to the screen. <span>We talked to the room the gamer's sitting in.</span></div>
+
+<section>
+  <div class="sec-head">
+    <div><div class="sec-num">02 · The work</div><h2>Two topicals, one grammar</h2></div>
+  </div>
+
+  <div class="arc">
+    <div class="arc-head">
+      Arc I<h3>World Video Game Day · quest unlocked</h3><span>27M reach · 3 reels</span>
+    </div>
+    <div class="arc-split">
+      <a href="https://www.instagram.com/reel/C_xuT8yAXzU/" target="_blank" class="arc-head-card">
+        <div class="thumb"><img src="img/wd-wvgd-thumb.png" alt="WVGD campaign head"/><span class="chip">Campaign head</span></div>
+        <div class="head-body">
+          <div class="tag">WVGD · Film 01</div>
+          <h4>The save point, IRL</h4>
+          <p>Physical world merged with game UI. The topical hook that opened the arc — colleagues styled as characters, everyday frames rendered as playable HUD.</p>
+          <div class="watch">Watch on Instagram ↗</div>
+        </div>
+      </a>
+      <div class="arc-rest">
+        <details class="reel">
+          <summary>
+            <div class="reel-icon"><svg viewBox="0 0 24 24"><path d="M4 17l6-6 4 4 6-8"/><circle cx="4" cy="17" r="1.5"/><circle cx="20" cy="7" r="1.5"/></svg></div>
+            <div class="reel-meta"><div class="tag">WVGD · Film 02</div><h5>Side-quest: the commute</h5></div>
+          </summary>
+          <div class="embed">
+            <iframe src="https://www.instagram.com/reel/C_vK-khgFJK/embed" allowtransparency allowfullscreen title="WVGD Reel 02"></iframe>
+            <a href="https://www.instagram.com/reel/C_vK-khgFJK/" target="_blank" class="watch">Open on Instagram ↗</a>
+          </div>
+        </details>
+        <details class="reel">
+          <summary>
+            <div class="reel-icon"><svg viewBox="0 0 24 24"><path d="M12 3l2.6 6.3L21 10l-5 4.7L17.2 21 12 17.7 6.8 21 8 14.7 3 10l6.4-.7z"/></svg></div>
+            <div class="reel-meta"><div class="tag">WVGD · Film 03</div><h5>Boss battle, no pause</h5></div>
+          </summary>
+          <div class="embed">
+            <iframe src="https://www.instagram.com/reel/C_sr3rFIkx4/embed" allowtransparency allowfullscreen title="WVGD Reel 03"></iframe>
+            <a href="https://www.instagram.com/reel/C_sr3rFIkx4/" target="_blank" class="watch">Open on Instagram ↗</a>
+          </div>
+        </details>
+      </div>
+    </div>
+  </div>
+
+  <div class="arc">
+    <div class="arc-head">
+      Arc II<h3>Holi · the festival as battle-royale</h3><span>15M reach · 3 reels</span>
+    </div>
+    <div class="arc-split">
+      <a href="https://www.instagram.com/reel/DHJO0LxoLse/" target="_blank" class="arc-head-card">
+        <div class="thumb"><img src="img/wd-holi-thumb.png" alt="Holi campaign head"/><span class="chip">Campaign head</span></div>
+        <div class="head-body">
+          <div class="tag">Holi · Film 01</div>
+          <h4>Respawn in colour</h4>
+          <p>Colleagues styled as game characters. The festival back to being the full-throttle battle it used to be in childhood — ambient brand, not intrusive.</p>
+          <div class="watch">Watch on Instagram ↗</div>
+        </div>
+      </a>
+      <div class="arc-rest">
+        <details class="reel">
+          <summary>
+            <div class="reel-icon"><svg viewBox="0 0 24 24"><path d="M4 10l8-5 8 5v9l-8 4-8-4z"/><path d="M8 12v4M12 10v7M16 12v4"/></svg></div>
+            <div class="reel-meta"><div class="tag">Holi · Film 02</div><h5>Pick your weapon, load the colour</h5></div>
+          </summary>
+          <div class="embed">
+            <iframe src="https://www.instagram.com/reel/DHJHidHIuDh/embed" allowtransparency allowfullscreen title="Holi Reel 02"></iframe>
+            <a href="https://www.instagram.com/reel/DHJHidHIuDh/" target="_blank" class="watch">Open on Instagram ↗</a>
+          </div>
+        </details>
+        <details class="reel">
+          <summary>
+            <div class="reel-icon"><svg viewBox="0 0 24 24"><path d="M5 8h14M5 12h14M5 16h10"/><circle cx="19" cy="16" r="2"/></svg></div>
+            <div class="reel-meta"><div class="tag">Holi · Film 03</div><h5>GG. Well played.</h5></div>
+          </summary>
+          <div class="embed">
+            <iframe src="https://www.instagram.com/reel/DHJHUYbIkuP/embed" allowtransparency allowfullscreen title="Holi Reel 03"></iframe>
+            <a href="https://www.instagram.com/reel/DHJHUYbIkuP/" target="_blank" class="watch">Open on Instagram ↗</a>
+          </div>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <div><div class="sec-num">03 · Deliverables</div><h2>What shipped</h2></div>
+  </div>
+  <div class="deliverables">
+    <div class="del">Topical messaging system<p>A reusable grammar for reel-native storytelling. Same mechanic, any cultural moment, Holi, WVGD, and a roadmap for more.</p></div>
+    <div class="del">6 hero reels · 2 arcs<p>Concept, copy, on-screen graphics across 3 WVGD + 3 Holi reels. All native-vertical, reel-first writing.</p></div>
+    <div class="del">42M Instagram reach<p>27M WVGD + 15M Holi, combined reach on organic-led distribution.</p></div>
+    <div class="del">Real-world-as-game treatment<p>Colleagues turned into game characters, everyday frames rendered as UI. Became the WD Black visual spine for the year.</p></div>
+  </div>
+</section>
+
+<nav class="pagenav">
+  <a href="projects.html#ch-02">← Back to Messaging chapter</a>
+  <a href="ms.html" class="prim">Next · Marks &amp; Spencer →</a>
+</nav>
+
+<footer>
+  © Simran Raj Bhyana · <a href="index.html">Home</a> · <a href="projects.html">Projects</a> · <a href="cv.html">CV</a>
+</footer>
+
+
+</html>
